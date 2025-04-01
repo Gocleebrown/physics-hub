@@ -11,11 +11,8 @@
     .topics-grid { display: flex; flex-wrap: wrap; gap: 20px; }
     .topic-column { flex: 1 1 300px; }
     label { display: block; margin: 5px 0; }
-    button { margin-top: 20px; padding: 10px 15px; font-size: 1em; display: inline-block; }{ font-family: Arial, sans-serif; padding: 20px; background-color: #eef2f3; }
-    h1, h2, h3 { color: #333; }
-    .section { margin-top: 30px; border-top: 1px solid #ccc; padding-top: 20px; }
-    label { display: block; margin: 5px 0; }
     button { margin-top: 20px; padding: 10px 15px; font-size: 1em; display: inline-block; }
+    #question-box { background: #fff; padding: 15px; border-radius: 10px; margin-top: 30px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
   </style>
 </head>
 <body>
@@ -87,76 +84,261 @@
     <button onclick="startPractice()">Start Practice</button>
   </div>
 
+  <div id="question-box"></div>
+
   <script>
     function toggleByGroup(typeSuffix, isChecked) {
       const all = document.querySelectorAll(`input[type='checkbox'][id*='topic'][id$='-${typeSuffix}']`);
       all.forEach(box => box.checked = isChecked);
     }
 
+    const questionBank = [
+      // Topic 1: Physical quantities and units
+      {
+        topic: 1,
+        type: "definition",
+        question: "Define a scalar quantity.",
+        keywords: ["magnitude only"],
+        alternatives: { "magnitude only": ["no direction", "size only"] },
+        model: "A scalar quantity has magnitude only and no direction."
+      },
+      {
+        topic: 1,
+        type: "definition",
+        question: "Define a vector quantity.",
+        keywords: ["magnitude", "direction"],
+        alternatives: { "direction": ["specified direction", "with direction"] },
+        model: "A vector quantity has both magnitude and direction."
+      },
+      {
+        topic: 1,
+        type: "definition",
+        question: "Give examples of scalar quantities.",
+        keywords: ["mass", "speed", "energy", "distance"],
+        alternatives: {},
+        model: "Examples of scalar quantities include mass, speed, energy, and distance."
+      },
+      {
+        topic: 1,
+        type: "definition",
+        question: "Give examples of vector quantities.",
+        keywords: ["force", "acceleration", "displacement", "velocity"],
+        alternatives: {},
+        model: "Examples of vector quantities include force, acceleration, displacement, and velocity."
+      },
+      {
+        topic: 1,
+        type: "definition",
+        question: "Define SI base quantity.",
+        keywords: ["defined", "without reference", "other quantities"],
+        alternatives: { "defined": ["specified"], "without reference": ["independent"] },
+        model: "A base quantity is a quantity defined without reference to other quantities."
+      },
+
+      // Topic 2: Measurement techniques
+      {
+        topic: 2,
+        type: "definition",
+        question: "State what is meant by zero error.",
+        keywords: ["instrument reading", "non-zero", "when should be zero"],
+        alternatives: { "non-zero": ["not zero", "some value"] },
+        model: "A zero error occurs when the instrument gives a non-zero reading when it should be zero."
+      },
+      {
+        topic: 2,
+        type: "definition",
+        question: "Explain how to reduce parallax error.",
+        keywords: ["eye", "position", "level"],
+        alternatives: { "eye": ["observer"], "level": ["in line"] },
+        model: "Parallax error is reduced by ensuring the eye is positioned directly in line with the scale."
+      },
+      {
+        topic: 2,
+        type: "definition",
+        question: "Why are repeat readings taken in experiments?",
+        keywords: ["reduce", "random error", "increase", "accuracy"],
+        alternatives: { "random error": ["inconsistencies"] },
+        model: "Repeat readings are taken to reduce random errors and improve accuracy."
+      },
+      {
+        topic: 2,
+        type: "definition",
+        question: "What is meant by a micrometer screw gauge?",
+        keywords: ["measure", "small lengths", "precision"],
+        alternatives: { "measure": ["determine"], "small lengths": ["tiny distances"] },
+        model: "A micrometer screw gauge is used to measure small lengths with high precision."
+      }
+    },
+
+      // Topic 3: Kinematics
+      {
+        topic: 3,
+        type: "definition",
+        question: "Define displacement.",
+        keywords: ["distance", "specified direction"],
+        alternatives: { "specified direction": ["given direction"] },
+        model: "Displacement is the distance moved in a specified direction."
+      },
+      {
+        topic: 3,
+        type: "definition",
+        question: "Define velocity.",
+        keywords: ["rate", "change", "displacement"],
+        alternatives: {},
+        model: "Velocity is the rate of change of displacement."
+      },
+      {
+        topic: 3,
+        type: "definition",
+        question: "Define acceleration.",
+        keywords: ["rate", "change", "velocity"],
+        alternatives: {},
+        model: "Acceleration is the rate of change of velocity."
+      },
+
+      // Topic 4: Dynamics
+      {
+        topic: 4,
+        type: "definition",
+        question: "State Newton’s First Law.",
+        keywords: ["object", "remains at rest", "uniform motion", "resultant force"],
+        alternatives: { "uniform motion": ["constant velocity"] },
+        model: "An object remains at rest or in uniform motion unless acted upon by a resultant force."
+      },
+      {
+        topic: 4,
+        type: "definition",
+        question: "State Newton’s Second Law.",
+        keywords: ["acceleration", "proportional", "force", "mass"],
+        alternatives: {},
+        model: "The acceleration of an object is directly proportional to the net force and inversely proportional to its mass."
+      },
+      {
+        topic: 4,
+        type: "definition",
+        question: "State Newton’s Third Law.",
+        keywords: ["equal", "opposite", "forces", "different bodies"],
+        alternatives: {},
+        model: "Every action has an equal and opposite reaction."
+      },
+
+      // Topic 5: Forces, density and pressure
+      {
+        topic: 5,
+        type: "definition",
+        question: "Define pressure.",
+        keywords: ["force", "area"],
+        alternatives: { "area": ["per unit area"] },
+        model: "Pressure is defined as force per unit area."
+      },
+      {
+        topic: 5,
+        type: "definition",
+        question: "Define density.",
+        keywords: ["mass", "volume"],
+        alternatives: {},
+        model: "Density is mass per unit volume."
+      },
+
+      // Topic 6: Work, energy and power
+      {
+        topic: 6,
+        type: "definition",
+        question: "Define work done.",
+        keywords: ["force", "displacement", "direction"],
+        alternatives: { "direction": ["in direction of force"] },
+        model: "Work is the product of force and displacement in the direction of the force."
+      },
+      {
+        topic: 6,
+        type: "definition",
+        question: "Define kinetic energy.",
+        keywords: ["half", "mass", "velocity squared"],
+        alternatives: { "velocity squared": ["speed squared"] },
+        model: "Kinetic energy is equal to one half times mass times velocity squared."
+      },
+      {
+        topic: 6,
+        type: "definition",
+        question: "Define power.",
+        keywords: ["rate", "energy transfer"],
+        alternatives: { "energy transfer": ["doing work"] },
+        model: "Power is the rate of energy transfer or doing work."
+      }
+        model: "An object remains at rest or in uniform motion unless acted upon by a resultant force."
+      },
+      {
+        topic: 4,
+        type: "definition",
+        question: "State Newton’s Second Law.",
+        keywords: ["acceleration", "proportional", "force", "mass"],
+        alternatives: {},
+        model: "The acceleration of an object is directly proportional to the net force and inversely proportional to its mass."
+      },
+      {
+        topic: 4,
+        type: "definition",
+        question: "State Newton’s Third Law.",
+        keywords: ["equal", "opposite", "forces", "different bodies"],
+        alternatives: {},
+        model: "Every action has an equal and opposite reaction."
+      }
+    ];
+
     function startPractice() {
-      const ids = [
-        'whole-defs', 'whole-eqs',
-        'topic1-defs', 'topic1-eqs',
-        'topic2-defs', 'topic2-eqs',
-        'topic3-defs', 'topic3-eqs',
-        'topic4-defs', 'topic4-eqs',
-        'topic5-defs', 'topic5-eqs',
-        'topic6-defs', 'topic6-eqs',
-        'topic7-defs', 'topic7-eqs',
-        'topic8-defs', 'topic8-eqs',
-        'topic9-defs', 'topic9-eqs',
-        'topic10-defs', 'topic10-eqs',
-        'topic11-defs', 'topic11-eqs',
-        'topic12-defs', 'topic12-eqs'
-      ];
-
-      const selections = ids.filter(id => document.getElementById(id).checked);
-
-      if (selections.length === 0) {
+      const ids = [...document.querySelectorAll("input[type='checkbox']")].filter(cb => cb.checked).map(cb => cb.id);
+      if (ids.length === 0) {
         alert("Please select at least one option to begin.");
         return;
       }
 
-      // Question bank (starting with Waves definitions)
-      const selectionsMap = {
-        'whole-defs': 'Whole Course - Definitions is being built',
-        'whole-eqs': 'Whole Course - Equations is being built',
-        'topic1-defs': 'Physical quantities and units - Definitions is being built',
-        'topic1-eqs': 'Physical quantities and units - Equations is being built',
-        'topic2-defs': 'Measurement techniques - Definitions is being built',
-        'topic2-eqs': 'Measurement techniques - Equations is being built',
-        'topic3-defs': 'Kinematics - Definitions is being built',
-        'topic3-eqs': 'Kinematics - Equations is being built',
-        'topic4-defs': 'Dynamics - Definitions is being built',
-        'topic4-eqs': 'Dynamics - Equations is being built',
-        'topic5-defs': 'Forces, density and pressure - Definitions is being built',
-        'topic5-eqs': 'Forces, density and pressure - Equations is being built',
-        'topic6-defs': 'Work, energy and power - Definitions is being built',
-        'topic6-eqs': 'Work, energy and power - Equations is being built',
-        'topic7-defs': 'Deformation of solids - Definitions is being built',
-        'topic7-eqs': 'Deformation of solids - Equations is being built',
-        'topic8-defs': 'Waves - Definitions is being built',
-        'topic8-eqs': 'Waves - Equations is being built',
-        'topic9-defs': 'Superposition - Definitions is being built',
-        'topic9-eqs': 'Superposition - Equations is being built',
-        'topic10-defs': 'Electricity - Definitions is being built',
-        'topic10-eqs': 'Electricity - Equations is being built',
-        'topic11-defs': 'D.C. circuits - Definitions is being built',
-        'topic11-eqs': 'D.C. circuits - Equations is being built',
-        'topic12-defs': 'Particle and nuclear physics - Definitions is being built',
-        'topic12-eqs': 'Particle and nuclear physics - Equations is being built'
-      };
+      const filtered = questionBank.filter(q => {
+        return ids.some(id => {
+          const topicMatch = id.includes(`topic${q.topic}`) || id.startsWith("whole");
+          const typeMatch = (id.endsWith("defs") && q.type === "definition") || (id.endsWith("eqs") && q.type === "equation");
+          return topicMatch && typeMatch;
+        });
+      });
 
-      // For now: show a random matching question from the bank
-      const messages = selections.map(sel => selectionsMap[sel] || `${sel} is being built`);
-      alert(messages.join("
-"));
-      return; {
-        
+      if (filtered.length === 0) {
+        document.getElementById("question-box").innerText = "No matching questions available yet.";
         return;
       }
 
+      const q = filtered[Math.floor(Math.random() * filtered.length)];
+      document.getElementById("question-box").innerHTML = `
+        <strong>Question:</strong> ${q.question}<br><br>
+        <textarea id='student-answer' rows='4' style='width:100%' placeholder='Type your answer here...'></textarea><br>
+        <button onclick='checkDefinition(${JSON.stringify(JSON.stringify(q))})'>Check Answer</button>
+        <div id='feedback' style='margin-top: 10px; font-weight: bold;'></div>
+      `;
+    }
+
+    function checkDefinition(qString) {
+      const q = JSON.parse(JSON.parse(qString));
+      const input = document.getElementById("student-answer").value.toLowerCase();
+      const found = [];
+
+      for (let kw of q.keywords) {
+        if (input.includes(kw)) {
+          found.push(kw);
+        } else if (q.alternatives[kw]) {
+          for (let alt of q.alternatives[kw]) {
+            if (input.includes(alt)) {
+              found.push(kw);
+              break;
+            }
           }
+        }
+      }
+
+      const missed = q.keywords.filter(k => !found.includes(k));
+      let result = `✅ Matched ${found.length}/${q.keywords.length} keywords.<br>`;
+      if (found.length > 0) result += `✔ Found: ${found.join(", ")}<br>`;
+      if (missed.length > 0) result += `✘ Missed: ${missed.join(", ")}<br>`;
+      result += `<em>Model Answer:</em> ${q.model}`;
+      document.getElementById("feedback").innerHTML = result;
+    }
   </script>
 </body>
 </html>
