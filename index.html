@@ -80,15 +80,134 @@
     }
 
     const questionBank = [
-      {
-        topic: 1,
-        type: "definition",
-        question: "Define a scalar quantity.",
-        keywords: ["magnitude only"],
-        alternatives: { "magnitude only": ["no direction", "size only"] },
-        model: "A scalar quantity has magnitude only and no direction."
-      }
-    ];
+  // Topic 1: Physical quantities and units
+  {
+    topic: 1,
+    type: "definition",
+    question: "Define a scalar quantity.",
+    keywords: ["magnitude", "no direction"],
+    alternatives: {
+      "magnitude": ["size", "value", "quantity"],
+      "no direction": ["no specific direction", "direction not involved"]
+    },
+    model: "A scalar quantity has magnitude (or size/value) and no direction."
+  },
+  {
+    topic: 1,
+    type: "definition",
+    question: "Define a vector quantity.",
+    keywords: ["magnitude", "direction"],
+    alternatives: {
+      "magnitude": ["size", "value", "quantity"],
+      "direction": ["specified direction", "particular direction"]
+    },
+    model: "A vector quantity has both magnitude (or size/value) and direction."
+  },
+
+  // Topic 2: Kinematics
+  {
+    topic: 2,
+    type: "definition",
+    question: "Define displacement.",
+    keywords: ["distance", "specified direction"],
+    alternatives: {
+      "specified direction": ["in a direction", "particular direction"]
+    },
+    model: "Displacement is the distance moved in a specified direction."
+  },
+  {
+    topic: 2,
+    type: "definition",
+    question: "Define speed.",
+    keywords: ["distance", "per unit time"],
+    alternatives: {
+      "per unit time": ["in a given time", "per second"]
+    },
+    model: "Speed is the distance travelled per unit time."
+  },
+  {
+    topic: 2,
+    type: "definition",
+    question: "Define velocity.",
+    keywords: ["displacement", "per unit time"],
+    alternatives: {
+      "per unit time": ["in a given time", "per second"]
+    },
+    model: "Velocity is the displacement per unit time."
+  },
+  {
+    topic: 2,
+    type: "definition",
+    question: "Define acceleration.",
+    keywords: ["change in velocity", "per unit time"],
+    alternatives: {
+      "change in velocity": ["difference in velocity"]
+    },
+    model: "Acceleration is the change in velocity per unit time."
+  },
+  {
+    topic: 2,
+    type: "definition",
+    question: "State what the gradient of a displacement-time graph represents.",
+    keywords: ["velocity"],
+    alternatives: {},
+    model: "The gradient of a displacement-time graph represents velocity."
+  },
+  {
+    topic: 2,
+    type: "definition",
+    question: "State what the gradient of a velocity-time graph represents.",
+    keywords: ["acceleration"],
+    alternatives: {},
+    model: "The gradient of a velocity-time graph represents acceleration."
+  },
+  {
+    topic: 2,
+    type: "definition",
+    question: "State what the area under a velocity-time graph represents.",
+    keywords: ["displacement"],
+    alternatives: {},
+    model: "The area under a velocity-time graph represents displacement."
+  },
+
+  // Topic 3: Dynamics
+  {
+    topic: 3,
+    type: "definition",
+    question: "State Newton’s First Law of Motion.",
+    keywords: ["body remains at rest", "constant velocity", "no resultant force"],
+    alternatives: {
+      "constant velocity": ["uniform motion"]
+    },
+    model: "A body remains at rest or in constant velocity if there is no resultant force acting on it."
+  },
+  {
+    topic: 3,
+    type: "definition",
+    question: "State Newton’s Second Law of Motion.",
+    keywords: ["acceleration", "proportional", "net force", "inversely", "mass"],
+    alternatives: {},
+    model: "The acceleration of an object is directly proportional to the net force and inversely proportional to its mass."
+  },
+  {
+    topic: 3,
+    type: "definition",
+    question: "State Newton’s Third Law of Motion.",
+    keywords: ["equal", "opposite", "forces", "different bodies"],
+    alternatives: {},
+    model: "Every action has an equal and opposite reaction on different bodies."
+  },
+  {
+    topic: 3,
+    type: "definition",
+    question: "Define inertia.",
+    keywords: ["reluctance", "change", "motion"],
+    alternatives: {
+      "reluctance": ["resistance"]
+    },
+    model: "Inertia is the reluctance of a body to change its state of motion."
+  }
+];
 
     let currentQuestion = null;
     let score = 0;
