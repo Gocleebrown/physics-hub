@@ -6,33 +6,157 @@
   <title>Physics Practice Hub</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; background-color: #eef2f3; }
-    h1, h2 { color: #333; }
+    h1, h2, h3 { color: #333; }
     .section { margin-top: 30px; border-top: 1px solid #ccc; padding-top: 20px; }
+    label { display: block; margin: 5px 0; }
     button { margin-top: 20px; padding: 10px 15px; font-size: 1em; display: inline-block; }
-    .nav-buttons { display: flex; flex-direction: column; gap: 10px; max-width: 300px; }
   </style>
 </head>
 <body>
   <h1>Cambridge Physics 9702 Practice Hub</h1>
 
   <div class="section">
-    <h2>Start Practice</h2>
-    <div class="nav-buttons">
-      <button onclick="window.location.href='https://gocleebrown.github.io/wave-definitions/'">
-        🌊 Practice: Wave Definitions
-      </button>
-      <button onclick="window.location.href='https://gocleebrown.github.io/waveshub/'">
-        🌊 Go to Waves Topic Hub
-      </button>
-      <button onclick="alert('Coming soon: Whole course practice mode.')">
-        📘 Whole Course Practice (coming soon)
-      </button>
-    </div>
+    <h2>Whole Course</h2>
+    <label><input type="checkbox" id="whole-defs"> Definitions</label>
+    <label><input type="checkbox" id="whole-eqs"> Equations</label>
   </div>
 
   <div class="section">
-    <p style="font-size: 0.9em; color: #666;">You can expand this hub anytime to include more topics like Mechanics, Electricity, Thermal Physics, and more.</p>
+    <h2>By Topic</h2>
+
+    <h3>1. Physical quantities and units</h3>
+    <label><input type="checkbox" id="topic1-defs"> Definitions</label>
+    <label><input type="checkbox" id="topic1-eqs"> Equations</label>
+
+    <h3>2. Measurement techniques</h3>
+    <label><input type="checkbox" id="topic2-defs"> Definitions</label>
+    <label><input type="checkbox" id="topic2-eqs"> Equations</label>
+
+    <h3>3. Kinematics</h3>
+    <label><input type="checkbox" id="topic3-defs"> Definitions</label>
+    <label><input type="checkbox" id="topic3-eqs"> Equations</label>
+
+    <h3>4. Dynamics</h3>
+    <label><input type="checkbox" id="topic4-defs"> Definitions</label>
+    <label><input type="checkbox" id="topic4-eqs"> Equations</label>
+
+    <h3>5. Forces, density and pressure</h3>
+    <label><input type="checkbox" id="topic5-defs"> Definitions</label>
+    <label><input type="checkbox" id="topic5-eqs"> Equations</label>
+
+    <h3>6. Work, energy and power</h3>
+    <label><input type="checkbox" id="topic6-defs"> Definitions</label>
+    <label><input type="checkbox" id="topic6-eqs"> Equations</label>
+
+    <h3>7. Deformation of solids</h3>
+    <label><input type="checkbox" id="topic7-defs"> Definitions</label>
+    <label><input type="checkbox" id="topic7-eqs"> Equations</label>
+
+    <h3>8. Waves</h3>
+    <label><input type="checkbox" id="topic8-defs"> Definitions</label>
+    <label><input type="checkbox" id="topic8-eqs"> Equations</label>
+
+    <h3>9. Superposition</h3>
+    <label><input type="checkbox" id="topic9-defs"> Definitions</label>
+    <label><input type="checkbox" id="topic9-eqs"> Equations</label>
+
+    <h3>10. Electricity</h3>
+    <label><input type="checkbox" id="topic10-defs"> Definitions</label>
+    <label><input type="checkbox" id="topic10-eqs"> Equations</label>
+
+    <h3>11. D.C. circuits</h3>
+    <label><input type="checkbox" id="topic11-defs"> Definitions</label>
+    <label><input type="checkbox" id="topic11-eqs"> Equations</label>
+
+    <h3>12. Particle and nuclear physics</h3>
+    <label><input type="checkbox" id="topic12-defs"> Definitions</label>
+    <label><input type="checkbox" id="topic12-eqs"> Equations</label>
   </div>
 
+  <div class="section">
+    <button onclick="startPractice()">Start Practice</button>
+  </div>
+
+  <script>
+    function startPractice() {
+      const ids = [
+        'whole-defs', 'whole-eqs',
+        'topic1-defs', 'topic1-eqs',
+        'topic2-defs', 'topic2-eqs',
+        'topic3-defs', 'topic3-eqs',
+        'topic4-defs', 'topic4-eqs',
+        'topic5-defs', 'topic5-eqs',
+        'topic6-defs', 'topic6-eqs',
+        'topic7-defs', 'topic7-eqs',
+        'topic8-defs', 'topic8-eqs',
+        'topic9-defs', 'topic9-eqs',
+        'topic10-defs', 'topic10-eqs',
+        'topic11-defs', 'topic11-eqs',
+        'topic12-defs', 'topic12-eqs'
+      ];
+
+      const selections = ids.filter(id => document.getElementById(id).checked);
+
+      if (selections.length === 0) {
+        alert("Please select at least one option to begin.");
+        return;
+      }
+
+      // Question bank (starting with Waves definitions)
+      const questionBank = [
+        {
+          topic: 8,
+          type: "definition",
+          question: "What is meant by coherent sources?",
+          keywords: ["same frequency", "constant phase difference"],
+          alternatives: {
+            "same frequency": ["identical frequency", "equal frequency"],
+            "constant phase difference": ["fixed phase difference", "unchanging phase difference"]
+          },
+          model: "Sources that emit waves with the same frequency and a constant phase difference."
+        },
+        {
+          topic: 8,
+          type: "definition",
+          question: "Define the term wavelength.",
+          keywords: ["distance", "corresponding points", "adjacent", "wave"],
+          alternatives: {
+            "corresponding points": ["same point in cycle", "identical phase"]
+          },
+          model: "The distance between two adjacent points on a wave that are in phase."
+        },
+        {
+          topic: 8,
+          type: "definition",
+          question: "What is meant by phase difference?",
+          keywords: ["fraction of a cycle", "difference", "position", "wave"],
+          alternatives: {
+            "fraction of a cycle": ["part of a cycle"],
+            "position": ["point on wave"]
+          },
+          model: "The fraction of a cycle between the positions of two points on a wave."
+        }
+      ];
+
+      // For now: show a random matching question from the bank
+      const filtered = questionBank.filter(q => {
+        return selections.some(sel => {
+          const matchTopic = sel.includes(`topic${q.topic}`) || sel.includes("whole");
+          const matchType = (q.type === "definition" && sel.includes("defs")) || (q.type === "equation" && sel.includes("eqs"));
+          return matchTopic && matchType;
+        });
+      });
+
+      if (filtered.length === 0) {
+        alert("No matching questions found. Try selecting a different set.");
+        return;
+      }
+
+      const randomQuestion = filtered[Math.floor(Math.random() * filtered.length)];
+      alert("Question: " + randomQuestion.question + "
+
+Model Answer: " + randomQuestion.model);
+    }
+  </script>
 </body>
 </html>
