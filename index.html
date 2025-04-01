@@ -22,14 +22,14 @@
     <h2>Whole Course</h2>
     <label><input type="checkbox" id="whole-defs" onchange="toggleByGroup('defs', this.checked)"> Definitions</label>
     <label><input type="checkbox" id="whole-eqs" onchange="toggleByGroup('eqs', this.checked)"> Equations</label>
+    <button onclick="startPractice()">Start Practice</button>
   </div>
 
   <div class="section">
     <h2>By Topic</h2>
     <div class="topics-grid">
-      <div class="topic-column" id="topic-columns">
-        <!-- Topic checkboxes will be dynamically inserted here -->
-      </div>
+      <div class="topic-column" id="topic-columns-left"></div>
+      <div class="topic-column" id="topic-columns-right"></div>
     </div>
   </div>
 
@@ -55,14 +55,20 @@
     ];
 
     function generateTopicCheckboxes() {
-      const column = document.getElementById("topic-columns");
+      const left = document.getElementById("topic-columns-left");
+      const right = document.getElementById("topic-columns-right");
       topics.forEach((name, i) => {
         const topicNum = i + 1;
-        column.innerHTML += `
+        const block = `
           <h3>${topicNum}. ${name}</h3>
           <label><input type="checkbox" id="topic${topicNum}-defs"> Definitions</label>
           <label><input type="checkbox" id="topic${topicNum}-eqs"> Equations</label>
         `;
+        if (i % 2 === 0) {
+          left.innerHTML += block;
+        } else {
+          right.innerHTML += block;
+        }
       });
     }
 
@@ -80,13 +86,13 @@
         alternatives: { "magnitude only": ["no direction", "size only"] },
         model: "A scalar quantity has magnitude only and no direction."
       }
-      // [Add all other questions back here, cleaned and validated.]
     ];
 
     let currentQuestion = null;
 
     function startPractice() {
       askNewQuestion();
+      document.getElementById("question-box").scrollIntoView({ behavior: 'smooth' });
     }
 
     function askNewQuestion() {
