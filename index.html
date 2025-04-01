@@ -98,6 +98,26 @@
           };
         }
       }
+      {
+        topic: 2,
+        type: "equation",
+        question: function() {
+          const m = Math.floor(Math.random() * 20 + 5);
+          const angle = Math.floor(Math.random() * 30 + 10);
+          const d = Math.floor(Math.random() * 10 + 2);
+          const g = 9.8;
+          const radians = angle * Math.PI / 180;
+          const a = g * Math.sin(radians);
+          const vSquared = 2 * a * d;
+          const v = Math.sqrt(vSquared);
+          return {
+            text: `A ${m} kg block slides down a frictionless slope inclined at ${angle}°. It travels ${d} m. Calculate the speed at the bottom.`,
+            answer: v.toFixed(2),
+            model: `a = g·sin(θ) = 9.8·sin(${angle}°) = ${a.toFixed(2)} m/s², then v² = 2ad = ${vSquared.toFixed(2)} ⇒ v = ${v.toFixed(2)} m/s`,
+            image: `https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Free_body_diagram_-_inclined_plane_no_friction.svg/640px-Free_body_diagram_-_inclined_plane_no_friction.svg.png`
+          };
+        }
+      }
     ];
 
     let currentQuestion = null;
