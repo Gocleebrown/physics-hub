@@ -141,10 +141,11 @@
       // For now: show a random matching question from the bank
       const filtered = questionBank.filter(q => {
         return selections.some(sel => {
-          const matchTopic = sel.includes(`topic${q.topic}`) || sel.includes("whole");
-          const matchType = (q.type === "definition" && sel.includes("defs")) || (q.type === "equation" && sel.includes("eqs"));
-          return matchTopic && matchType;
+          const topicMatch = sel.includes(`topic${q.topic}-`) || (sel === 'whole-defs' && q.type === 'definition') || (sel === 'whole-eqs' && q.type === 'equation');
+          const typeMatch = (q.type === 'definition' && sel.endsWith('-defs')) || (q.type === 'equation' && sel.endsWith('-eqs')) || sel.startsWith('whole');
+          return topicMatch && typeMatch;
         });
+      });
       });
 
       if (filtered.length === 0) {
