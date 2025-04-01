@@ -14,6 +14,9 @@
     button { margin-top: 20px; padding: 10px 15px; font-size: 1em; display: inline-block; }
     #question-box { background: #fff; padding: 15px; border-radius: 10px; margin-top: 30px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
   </style>
+  <style>
+    #score-box { margin-top: 20px; font-weight: bold; }
+  </style>
 </head>
 <body>
   <h1>Cambridge Physics 9702 Practice Hub</h1>
@@ -33,47 +36,47 @@
         <label><input type="checkbox" id="topic1-eqs"> Equations</label>
 
         <h3>2. Measurement techniques</h3>
-        <label><input type="checkbox" id="topic2-defs"> Definitions</label>
-        <label><input type="checkbox" id="topic2-eqs"> Equations</label>
+        <label><input type="checkbox" id="topic1-defs"> Definitions</label>
+        <label><input type="checkbox" id="topic1-eqs"> Equations</label>
 
-        <h3>3. Kinematics</h3>
+        <h3>2. Kinematics</h3>
         <label><input type="checkbox" id="topic3-defs"> Definitions</label>
         <label><input type="checkbox" id="topic3-eqs"> Equations</label>
 
-        <h3>4. Dynamics</h3>
+        <h3>3. Dynamics</h3>
         <label><input type="checkbox" id="topic4-defs"> Definitions</label>
         <label><input type="checkbox" id="topic4-eqs"> Equations</label>
 
-        <h3>5. Forces, density and pressure</h3>
+        <h3>4. Forces, density and pressure</h3>
         <label><input type="checkbox" id="topic5-defs"> Definitions</label>
         <label><input type="checkbox" id="topic5-eqs"> Equations</label>
 
-        <h3>6. Work, energy and power</h3>
+        <h3>5. Work, energy and power</h3>
         <label><input type="checkbox" id="topic6-defs"> Definitions</label>
         <label><input type="checkbox" id="topic6-eqs"> Equations</label>
       </div>
       <div class="topic-column">
-        <h3>7. Deformation of solids</h3>
+        <h3>6. Deformation of solids</h3>
         <label><input type="checkbox" id="topic7-defs"> Definitions</label>
         <label><input type="checkbox" id="topic7-eqs"> Equations</label>
 
-        <h3>8. Waves</h3>
+        <h3>7. Waves</h3>
         <label><input type="checkbox" id="topic8-defs"> Definitions</label>
         <label><input type="checkbox" id="topic8-eqs"> Equations</label>
 
-        <h3>9. Superposition</h3>
+        <h3>8. Superposition</h3>
         <label><input type="checkbox" id="topic9-defs"> Definitions</label>
         <label><input type="checkbox" id="topic9-eqs"> Equations</label>
 
-        <h3>10. Electricity</h3>
+        <h3>9. Electricity</h3>
         <label><input type="checkbox" id="topic10-defs"> Definitions</label>
         <label><input type="checkbox" id="topic10-eqs"> Equations</label>
 
-        <h3>11. D.C. circuits</h3>
+        <h3>10. D.C. circuits</h3>
         <label><input type="checkbox" id="topic11-defs"> Definitions</label>
         <label><input type="checkbox" id="topic11-eqs"> Equations</label>
 
-        <h3>12. Particle and nuclear physics</h3>
+        <h3>11. Particle and nuclear physics</h3>
         <label><input type="checkbox" id="topic12-defs"> Definitions</label>
         <label><input type="checkbox" id="topic12-eqs"> Equations</label>
       </div>
@@ -88,6 +91,7 @@
     <button onclick="startPractice()">Start Practice</button>
   </div>
 
+  <div id="score-box">Score: <span id="score">0</span>/<span id="total">0</span></div>
   <div id="question-box"></div>
 
   <script>
@@ -98,6 +102,62 @@
 
     const questionBank = [
   // Topic 1: Physical quantities and units
+  {
+    topic: 1,
+    type: "definition",
+    question: "Define systematic error.",
+    keywords: ["consistent", "bias", "same direction"],
+    alternatives: {},
+    model: "A systematic error is a consistent bias in measurement that occurs in the same direction each time."
+  },
+  {
+    topic: 1,
+    type: "definition",
+    question: "Define random error.",
+    keywords: ["unpredictable", "varying", "measurement"],
+    alternatives: {},
+    model: "A random error is an unpredictable variation in measurement from one reading to another."
+  },
+  {
+    topic: 1,
+    type: "definition",
+    question: "Define precision.",
+    keywords: ["consistency", "repeat readings"],
+    alternatives: {},
+    model: "Precision refers to the consistency of repeat readings."
+  },
+  {
+    topic: 1,
+    type: "definition",
+    question: "Define accuracy.",
+    keywords: ["closeness", "true value"],
+    alternatives: {},
+    model: "Accuracy refers to how close a measured value is to the true value."
+  },
+  {
+    topic: 1,
+    type: "definition",
+    question: "Define absolute uncertainty.",
+    keywords: ["margin", "measured value"],
+    alternatives: {},
+    model: "Absolute uncertainty is the margin of uncertainty in a measured value."
+  },
+  {
+    topic: 1,
+    type: "definition",
+    question: "Define percentage uncertainty.",
+    keywords: ["absolute uncertainty", "percentage", "measured value"],
+    alternatives: {},
+    model: "Percentage uncertainty is the absolute uncertainty expressed as a percentage of the measured value."
+  },
+  {
+    topic: 1,
+    type: "definition",
+    question: "Explain how to combine uncertainties for multiplication and division.",
+    keywords: ["add", "percentage", "uncertainties"],
+    alternatives: {},
+    model: "When multiplying or dividing values, add the percentage uncertainties."
+  }
   {
     topic: 1,
     type: "definition",
@@ -141,7 +201,7 @@
 
   // Topic 2: Measurement techniques
   {
-    topic: 2,
+    topic: 1,
     type: "definition",
     question: "State what is meant by zero error.",
     keywords: ["instrument reading", "non-zero", "when should be zero"],
@@ -174,7 +234,7 @@
   },
   // Topic 3: Kinematics
   {
-    topic: 3,
+    topic: 2,
     type: "definition",
     question: "Define displacement.",
     keywords: ["distance", "specified direction"],
@@ -208,7 +268,7 @@
   },
   // Topic 4: Dynamics
   {
-    topic: 4,
+    topic: 3,
     type: "definition",
     question: "State Newton’s First Law.",
     keywords: ["object", "remains at rest", "uniform motion", "resultant force"],
@@ -234,7 +294,7 @@
 
   // Topic 5: Forces, density and pressure
   {
-    topic: 5,
+    topic: 4,
     type: "definition",
     question: "Define pressure.",
     keywords: ["force", "area"],
@@ -252,7 +312,7 @@
 
   // Topic 6: Work, energy and power
   {
-    topic: 6,
+    topic: 5,
     type: "definition",
     question: "State what is meant by the work done by a force.",
     keywords: ["force", "displacement", "direction"],
@@ -261,7 +321,7 @@
   },
   // Topic 7 additional
   {
-    topic: 7,
+    topic: 6,
     type: "definition",
     question: "Define the Young modulus of a material.",
     keywords: ["stress", "strain", "proportionality"],
@@ -270,7 +330,7 @@
   },
   // Topic 8 additional
   {
-    topic: 8,
+    topic: 7,
     type: "definition",
     question: "By reference to the direction of propagation of energy, state what is meant by a transverse wave.",
     keywords: ["perpendicular", "oscillation", "energy propagation"],
@@ -331,7 +391,7 @@
 
   // Topic 9: Superposition
   {
-    topic: 9,
+    topic: 8,
     type: "definition",
     question: "State the principle of superposition.",
     keywords: ["resultant", "sum", "individual displacements"],
@@ -357,7 +417,7 @@
 
   // Topic 10: Electricity
   {
-    topic: 10,
+    topic: 9,
     type: "definition",
     question: "Define electric current.",
     keywords: ["rate", "flow", "charge"],
@@ -375,7 +435,7 @@
 
   // Topic 11: D.C. circuits
   {
-    topic: 11,
+    topic: 10,
     type: "definition",
     question: "Define resistance.",
     keywords: ["voltage", "current"],
@@ -393,7 +453,7 @@
 
   // Topic 12: Particle and nuclear physics
   {
-    topic: 12,
+    topic: 11,
     type: "definition",
     question: "Define nucleon number.",
     keywords: ["total", "protons", "neutrons"],
@@ -426,13 +486,20 @@
   }
 ];
 
-    function startPractice() {
-      const ids = [...document.querySelectorAll("input[type='checkbox']")].filter(cb => cb.checked).map(cb => cb.id);
-      if (ids.length === 0) {
-        alert("Please select at least one option to begin.");
-        return;
-      }
+    let currentQuestion = null;
+    let score = 0;
+    let total = 0;
 
+    function startPractice() {
+      score = 0;
+      total = 0;
+      document.getElementById("score").innerText = score;
+      document.getElementById("total").innerText = total;
+      askNewQuestion();
+    }
+
+    function askNewQuestion() {
+      const ids = [...document.querySelectorAll("input[type='checkbox']")].filter(cb => cb.checked).map(cb => cb.id);
       const filtered = questionBank.filter(q => {
         return ids.some(id => {
           const topicMatch = id.includes(`topic${q.topic}`) || id.startsWith("whole");
@@ -447,6 +514,16 @@
       }
 
       const q = filtered[Math.floor(Math.random() * filtered.length)];
+      currentQuestion = q;
+      document.getElementById("question-box").innerHTML = `
+        <strong>Question:</strong> ${q.question}<br><br>
+        <textarea id='student-answer' rows='4' style='width:100%' placeholder='Type your answer here...'></textarea><br>
+        <button onclick='checkDefinition()'>Check Answer</button>
+        <button onclick='showModelAnswer()'>Show Model Answer</button>
+        <button onclick='askNewQuestion()'>Next Question</button>
+        <div id='feedback' style='margin-top: 10px; font-weight: bold;'></div>
+      `;
+    }
       document.getElementById("question-box").innerHTML = `<textarea id='student-answer' rows='4' style='width:100%' placeholder='Type your answer here...'></textarea><br>
         <button onclick='checkDefinition(${JSON.stringify(JSON.stringify(q))})'>Check Answer</button>
         <button onclick='showModelAnswer(${JSON.stringify(JSON.stringify(q))})'>Show Model Answer</button>
@@ -454,8 +531,8 @@
       `;
     }
 
-    function checkDefinition(qString) {
-      const q = JSON.parse(JSON.parse(qString));
+    function checkDefinition() {
+      const q = currentQuestion;
       const input = document.getElementById("student-answer").value.toLowerCase();
       const found = [];
 
@@ -477,7 +554,19 @@
       if (found.length > 0) result += `✔ Found: ${found.join(", ")}<br>`;
       if (missed.length > 0) result += `✘ Missed: ${missed.join(", ")}<br>`;
       result += `<em>Model Answer:</em> ${q.model}`;
+
+      total++;
+      if (missed.length === 0 && found.length === q.keywords.length) score++;
+
+      document.getElementById("score").innerText = score;
+      document.getElementById("total").innerText = total;
       document.getElementById("feedback").innerHTML = result;
+    }
+
+    function showModelAnswer() {
+      const q = currentQuestion;
+      document.getElementById("feedback").innerHTML = `<em>Model Answer:</em> ${q.model}`;
+    }
     }
 
     function showModelAnswer(qString) {
