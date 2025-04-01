@@ -524,11 +524,7 @@
         <div id='feedback' style='margin-top: 10px; font-weight: bold;'></div>
       `;
     }
-      document.getElementById("question-box").innerHTML = `<textarea id='student-answer' rows='4' style='width:100%' placeholder='Type your answer here...'></textarea><br>
-        <button onclick='checkDefinition(${JSON.stringify(JSON.stringify(q))})'>Check Answer</button>
-        <button onclick='showModelAnswer(${JSON.stringify(JSON.stringify(q))})'>Show Model Answer</button>
-        <div id='feedback' style='margin-top: 10px; font-weight: bold;'></div>
-      `;
+      
     }
 
     function checkDefinition() {
@@ -574,6 +570,10 @@
       document.getElementById("feedback").innerHTML = `<em>Model Answer:</em> ${q.model}`;
     }
     }
-  </script>
+  function showModelAnswer(qString) {
+  const q = JSON.parse(JSON.parse(qString));
+  document.getElementById("feedback").innerHTML = `<em>Model Answer:</em> ${q.model}`;
+}
+</script>
 </body>
 </html>
