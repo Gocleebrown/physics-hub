@@ -91,12 +91,14 @@
     <button onclick="startPractice()">Start Practice</button>
   </div>
 
-  <div id="score-box">Score: <span id="score">0</span>/<span id="total">0</span></div>
+  
   <div id="question-box"></div>
 
   <script>
     function toggleByGroup(typeSuffix, isChecked) {
-  const all = document.querySelectorAll(`input[type='checkbox'][id*='topic'][id$='-${typeSuffix}']`);
+  const all = document.querySelectorAll(`input[type='checkbox'][id^='topic'][id$='-${typeSuffix}']`);
+  all.forEach(box => box.checked = isChecked);
+}']`);
   all.forEach(box => box.checked = isChecked);
 }']`);
   all.forEach(box => box.checked = isChecked);
@@ -491,8 +493,9 @@
 ];
 
     let currentQuestion = null;
-    let score = 0;
-    let total = 0;
+    // Score tracking disabled
+// let score = 0;
+// let total = 0;
 
     function startPractice() {
       score = 0;
@@ -553,10 +556,7 @@
       result += `<em>Model Answer:</em> ${q.model}`;
 
       total++;
-      if (missed.length === 0 && found.length === q.keywords.length) score++;
-
-      document.getElementById("score").innerText = score;
-      document.getElementById("total").innerText = total;
+      // Scoring disabled
       document.getElementById("feedback").innerHTML = result;
     }
 
