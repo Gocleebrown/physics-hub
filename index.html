@@ -96,7 +96,11 @@
 
   <script>
     function toggleByGroup(typeSuffix, isChecked) {
-      const all = document.querySelectorAll(`input[type='checkbox'][id*='topic'][id$='-${typeSuffix}']`);
+  const all = document.querySelectorAll(`input[type='checkbox'][id*='topic'][id$='-${typeSuffix}']`);
+  all.forEach(box => box.checked = isChecked);
+}']`);
+  all.forEach(box => box.checked = isChecked);
+}']`);
       all.forEach(box => box.checked = isChecked);
     }
 
@@ -499,34 +503,31 @@
     }
 
     function askNewQuestion() {
-      const ids = [...document.querySelectorAll("input[type='checkbox']")].filter(cb => cb.checked).map(cb => cb.id);
-      const filtered = questionBank.filter(q => {
-        return ids.some(id => {
-          const topicMatch = id.includes(`topic${q.topic}`) || id.startsWith("whole");
-          const typeMatch = (id.endsWith("defs") && q.type === "definition") || (id.endsWith("eqs") && q.type === "equation");
-          return topicMatch && typeMatch;
-        });
-      });
+  const ids = [...document.querySelectorAll("input[type='checkbox']")].filter(cb => cb.checked).map(cb => cb.id);
+  const filtered = questionBank.filter(q => {
+    return ids.some(id => {
+      const topicMatch = id.includes(`topic${q.topic}`);
+      const typeMatch = (id.endsWith("defs") && q.type === "definition") || (id.endsWith("eqs") && q.type === "equation");
+      return topicMatch && typeMatch;
+    });
+  });
 
-      if (filtered.length === 0) {
-        document.getElementById("question-box").innerText = "No matching questions available yet.";
-        return;
-      }
+  if (filtered.length === 0) {
+    document.getElementById("question-box").innerText = "No matching questions available yet.";
+    return;
+  }
 
-      const q = filtered[Math.floor(Math.random() * filtered.length)];
-      currentQuestion = q;
-      document.getElementById("question-box").innerHTML = `
-        <strong>Question:</strong> ${q.question}<br><br>
-        <textarea id='student-answer' rows='4' style='width:100%' placeholder='Type your answer here...'></textarea><br>
-        <button onclick='checkDefinition()'>Check Answer</button>
-        <button onclick='showModelAnswer()'>Show Model Answer</button>
-        <button onclick='askNewQuestion()'>Next Question</button>
-        <div id='feedback' style='margin-top: 10px; font-weight: bold;'></div>
-      `;
-    }
-      
-    }
-
+  const q = filtered[Math.floor(Math.random() * filtered.length)];
+  currentQuestion = q;
+  document.getElementById("question-box").innerHTML = `
+    <strong>Question:</strong> ${q.question}<br><br>
+    <textarea id='student-answer' rows='4' style='width:100%' placeholder='Type your answer here...'></textarea><br>
+    <button onclick='checkDefinition()'>Check Answer</button>
+    <button onclick='showModelAnswer()'>Show Model Answer</button>
+    <button onclick='askNewQuestion()'>Next Question</button>
+    <div id='feedback' style='margin-top: 10px; font-weight: bold;'></div>
+  `;
+}
     function checkDefinition() {
       const q = currentQuestion;
       const input = document.getElementById("student-answer").value.toLowerCase();
@@ -560,14 +561,16 @@
     }
 
     function showModelAnswer() {
-      const q = currentQuestion;
-      document.getElementById("feedback").innerHTML = `<em>Model Answer:</em> ${q.model}`;
+  const q = currentQuestion;
+  document.getElementById("feedback").innerHTML = `<em>Model Answer:</em> ${q.model}`;
+}`;
     }
     }
 
-    function showModelAnswer(qString) {
-      const q = JSON.parse(JSON.parse(qString));
-      document.getElementById("feedback").innerHTML = `<em>Model Answer:</em> ${q.model}`;
+    function showModelAnswer() {
+  const q = currentQuestion;
+  document.getElementById("feedback").innerHTML = `<em>Model Answer:</em> ${q.model}`;
+}`;
     }
     }
   function showModelAnswer(qString) {
