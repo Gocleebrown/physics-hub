@@ -103,61 +103,44 @@
       }
 
       // Question bank (starting with Waves definitions)
-      const questionBank = [
-        {
-          topic: 8,
-          type: "definition",
-          question: "What is meant by coherent sources?",
-          keywords: ["same frequency", "constant phase difference"],
-          alternatives: {
-            "same frequency": ["identical frequency", "equal frequency"],
-            "constant phase difference": ["fixed phase difference", "unchanging phase difference"]
-          },
-          model: "Sources that emit waves with the same frequency and a constant phase difference."
-        },
-        {
-          topic: 8,
-          type: "definition",
-          question: "Define the term wavelength.",
-          keywords: ["distance", "corresponding points", "adjacent", "wave"],
-          alternatives: {
-            "corresponding points": ["same point in cycle", "identical phase"]
-          },
-          model: "The distance between two adjacent points on a wave that are in phase."
-        },
-        {
-          topic: 8,
-          type: "definition",
-          question: "What is meant by phase difference?",
-          keywords: ["fraction of a cycle", "difference", "position", "wave"],
-          alternatives: {
-            "fraction of a cycle": ["part of a cycle"],
-            "position": ["point on wave"]
-          },
-          model: "The fraction of a cycle between the positions of two points on a wave."
-        }
-      ];
+      const selectionsMap = {
+        'whole-defs': 'Whole Course - Definitions is being built',
+        'whole-eqs': 'Whole Course - Equations is being built',
+        'topic1-defs': 'Physical quantities and units - Definitions is being built',
+        'topic1-eqs': 'Physical quantities and units - Equations is being built',
+        'topic2-defs': 'Measurement techniques - Definitions is being built',
+        'topic2-eqs': 'Measurement techniques - Equations is being built',
+        'topic3-defs': 'Kinematics - Definitions is being built',
+        'topic3-eqs': 'Kinematics - Equations is being built',
+        'topic4-defs': 'Dynamics - Definitions is being built',
+        'topic4-eqs': 'Dynamics - Equations is being built',
+        'topic5-defs': 'Forces, density and pressure - Definitions is being built',
+        'topic5-eqs': 'Forces, density and pressure - Equations is being built',
+        'topic6-defs': 'Work, energy and power - Definitions is being built',
+        'topic6-eqs': 'Work, energy and power - Equations is being built',
+        'topic7-defs': 'Deformation of solids - Definitions is being built',
+        'topic7-eqs': 'Deformation of solids - Equations is being built',
+        'topic8-defs': 'Waves - Definitions is being built',
+        'topic8-eqs': 'Waves - Equations is being built',
+        'topic9-defs': 'Superposition - Definitions is being built',
+        'topic9-eqs': 'Superposition - Equations is being built',
+        'topic10-defs': 'Electricity - Definitions is being built',
+        'topic10-eqs': 'Electricity - Equations is being built',
+        'topic11-defs': 'D.C. circuits - Definitions is being built',
+        'topic11-eqs': 'D.C. circuits - Equations is being built',
+        'topic12-defs': 'Particle and nuclear physics - Definitions is being built',
+        'topic12-eqs': 'Particle and nuclear physics - Equations is being built'
+      };
 
       // For now: show a random matching question from the bank
-      const filtered = questionBank.filter(q => {
-        return selections.some(sel => {
-          const topicMatch = sel.includes(`topic${q.topic}-`) || (sel === 'whole-defs' && q.type === 'definition') || (sel === 'whole-eqs' && q.type === 'equation');
-          const typeMatch = (q.type === 'definition' && sel.endsWith('-defs')) || (q.type === 'equation' && sel.endsWith('-eqs')) || sel.startsWith('whole');
-          return topicMatch && typeMatch;
-        });
-      });
-      );
-
-      if (filtered.length === 0) {
-        alert("No matching questions found. Try selecting a different set.");
+      const messages = selections.map(sel => selectionsMap[sel] || `${sel} is being built`);
+      alert(messages.join("\n"));
+      return; {
+        
         return;
       }
 
-      const randomQuestion = filtered[Math.floor(Math.random() * filtered.length)];
-      alert("Question: " + randomQuestion.question + "
-
-Model Answer: " + randomQuestion.model);
-    }
+          }
   </script>
 </body>
 </html>
