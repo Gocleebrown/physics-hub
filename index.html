@@ -13,6 +13,7 @@
     label { display: block; margin: 5px 0; }
     button { margin-top: 20px; padding: 10px 15px; font-size: 1em; display: inline-block; }
     #question-box { background: #fff; padding: 15px; border-radius: 10px; margin-top: 30px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    #score-box { font-weight: bold; margin-top: 10px; }
   </style>
 </head>
 <body>
@@ -37,6 +38,7 @@
     <button onclick="startPractice()">Start Practice</button>
   </div>
 
+  <div id="score-box">Score: <span id="score">0</span></div>
   <div id="question-box"></div>
 
   <script>
@@ -89,8 +91,11 @@
     ];
 
     let currentQuestion = null;
+    let score = 0;
 
     function startPractice() {
+      score = 0;
+      document.getElementById("score").innerText = score;
       askNewQuestion();
       document.getElementById("question-box").scrollIntoView({ behavior: 'smooth' });
     }
@@ -145,6 +150,8 @@
       if (found.length > 0) result += `✔ Found: ${found.join(", ")}<br>`;
       if (missed.length > 0) result += `✘ Missed: ${missed.join(", ")}<br>`;
       result += `<em>Model Answer:</em> ${q.model}`;
+      if (missed.length === 0 && found.length === q.keywords.length) score++;
+      document.getElementById("score").innerText = score;
       document.getElementById("feedback").innerHTML = result;
     }
 
