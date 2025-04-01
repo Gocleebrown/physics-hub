@@ -93,355 +93,334 @@
     }
 
     const questionBank = [
-      // Topic 1: Physical quantities and units
-      {
-        topic: 1,
-        type: "definition",
-        question: "Define a scalar quantity.",
-        keywords: ["magnitude only"],
-        alternatives: { "magnitude only": ["no direction", "size only"] },
-        model: "A scalar quantity has magnitude only and no direction."
-      },
-      {
-        topic: 1,
-        type: "definition",
-        question: "Define a vector quantity.",
-        keywords: ["magnitude", "direction"],
-        alternatives: { "direction": ["specified direction", "with direction"] },
-        model: "A vector quantity has both magnitude and direction."
-      },
-      {
-        topic: 1,
-        type: "definition",
-        question: "Give examples of scalar quantities.",
-        keywords: ["mass", "speed", "energy", "distance"],
-        alternatives: {},
-        model: "Examples of scalar quantities include mass, speed, energy, and distance."
-      },
-      {
-        topic: 1,
-        type: "definition",
-        question: "Give examples of vector quantities.",
-        keywords: ["force", "acceleration", "displacement", "velocity"],
-        alternatives: {},
-        model: "Examples of vector quantities include force, acceleration, displacement, and velocity."
-      },
-      {
-        topic: 1,
-        type: "definition",
-        question: "Define SI base quantity.",
-        keywords: ["defined", "without reference", "other quantities"],
-        alternatives: { "defined": ["specified"], "without reference": ["independent"] },
-        model: "A base quantity is a quantity defined without reference to other quantities."
-      },
+  // Topic 1: Physical quantities and units
+  {
+    topic: 1,
+    type: "definition",
+    question: "Define a scalar quantity.",
+    keywords: ["magnitude only"],
+    alternatives: { "magnitude only": ["no direction", "size only"] },
+    model: "A scalar quantity has magnitude only and no direction."
+  },
+  {
+    topic: 1,
+    type: "definition",
+    question: "Define a vector quantity.",
+    keywords: ["magnitude", "direction"],
+    alternatives: { "direction": ["specified direction", "with direction"] },
+    model: "A vector quantity has both magnitude and direction."
+  },
+  {
+    topic: 1,
+    type: "definition",
+    question: "Give examples of scalar quantities.",
+    keywords: ["mass", "speed", "energy", "distance"],
+    alternatives: {},
+    model: "Examples of scalar quantities include mass, speed, energy, and distance."
+  },
+  {
+    topic: 1,
+    type: "definition",
+    question: "Give examples of vector quantities.",
+    keywords: ["force", "acceleration", "displacement", "velocity"],
+    alternatives: {},
+    model: "Examples of vector quantities include force, acceleration, displacement, and velocity."
+  },
+  {
+    topic: 1,
+    type: "definition",
+    question: "Define SI base quantity.",
+    keywords: ["defined", "without reference", "other quantities"],
+    alternatives: { "defined": ["specified"], "without reference": ["independent"] },
+    model: "A base quantity is a quantity defined without reference to other quantities."
+  },
 
-      // Topic 2: Measurement techniques
-      {
-        topic: 2,
-        type: "definition",
-        question: "State what is meant by zero error.",
-        keywords: ["instrument reading", "non-zero", "when should be zero"],
-        alternatives: { "non-zero": ["not zero", "some value"] },
-        model: "A zero error occurs when the instrument gives a non-zero reading when it should be zero."
-      },
-      {
-        topic: 2,
-        type: "definition",
-        question: "Explain how to reduce parallax error.",
-        keywords: ["eye", "position", "level"],
-        alternatives: { "eye": ["observer"], "level": ["in line"] },
-        model: "Parallax error is reduced by ensuring the eye is positioned directly in line with the scale."
-      },
-      {
-        topic: 2,
-        type: "definition",
-        question: "Why are repeat readings taken in experiments?",
-        keywords: ["reduce", "random error", "increase", "accuracy"],
-        alternatives: { "random error": ["inconsistencies"] },
-        model: "Repeat readings are taken to reduce random errors and improve accuracy."
-      },
-      {
-        topic: 2,
-        type: "definition",
-        question: "What is meant by a micrometer screw gauge?",
-        keywords: ["measure", "small lengths", "precision"],
-        alternatives: { "measure": ["determine"], "small lengths": ["tiny distances"] },
-        model: "A micrometer screw gauge is used to measure small lengths with high precision."
-      }
-    },
+  // Topic 2: Measurement techniques
+  {
+    topic: 2,
+    type: "definition",
+    question: "State what is meant by zero error.",
+    keywords: ["instrument reading", "non-zero", "when should be zero"],
+    alternatives: { "non-zero": ["not zero", "some value"] },
+    model: "A zero error occurs when the instrument gives a non-zero reading when it should be zero."
+  },
+  {
+    topic: 2,
+    type: "definition",
+    question: "Explain how to reduce parallax error.",
+    keywords: ["eye", "position", "level"],
+    alternatives: { "eye": ["observer"], "level": ["in line"] },
+    model: "Parallax error is reduced by ensuring the eye is positioned directly in line with the scale."
+  },
+  {
+    topic: 2,
+    type: "definition",
+    question: "Why are repeat readings taken in experiments?",
+    keywords: ["reduce", "random error", "increase", "accuracy"],
+    alternatives: { "random error": ["inconsistencies"] },
+    model: "Repeat readings are taken to reduce random errors and improve accuracy."
+  },
+  {
+    topic: 2,
+    type: "definition",
+    question: "What is meant by a micrometer screw gauge?",
+    keywords: ["measure", "small lengths", "precision"],
+    alternatives: { "measure": ["determine"], "small lengths": ["tiny distances"] },
+    model: "A micrometer screw gauge is used to measure small lengths with high precision."
+  },
+  // Topic 3: Kinematics
+  {
+    topic: 3,
+    type: "definition",
+    question: "Define displacement.",
+    keywords: ["distance", "specified direction"],
+    alternatives: { "specified direction": ["given direction"] },
+    model: "Displacement is the distance moved in a specified direction."
+  },
+  {
+    topic: 3,
+    type: "definition",
+    question: "Define velocity.",
+    keywords: ["rate", "change", "displacement"],
+    alternatives: {},
+    model: "Velocity is the rate of change of displacement."
+  },
+  {
+    topic: 3,
+    type: "definition",
+    question: "Define acceleration.",
+    keywords: ["rate", "change", "velocity"],
+    alternatives: {},
+    model: "Acceleration is the rate of change of velocity."
+  },
+  // Topic 3 additional (from past paper)
+  {
+    topic: 3,
+    type: "definition",
+    question: "State what is represented by the area under a velocity–time graph.",
+    keywords: ["area", "velocity–time", "displacement"],
+    alternatives: {},
+    model: "The area under a velocity–time graph represents the displacement."
+  },
+  // Topic 4: Dynamics
+  {
+    topic: 4,
+    type: "definition",
+    question: "State Newton’s First Law.",
+    keywords: ["object", "remains at rest", "uniform motion", "resultant force"],
+    alternatives: { "uniform motion": ["constant velocity"] },
+    model: "An object remains at rest or in uniform motion unless acted upon by a resultant force."
+  },
+  {
+    topic: 4,
+    type: "definition",
+    question: "State Newton’s Second Law.",
+    keywords: ["acceleration", "proportional", "force", "mass"],
+    alternatives: {},
+    model: "The acceleration of an object is directly proportional to the net force and inversely proportional to its mass."
+  },
+  {
+    topic: 4,
+    type: "definition",
+    question: "State Newton’s Third Law.",
+    keywords: ["equal", "opposite", "forces", "different bodies"],
+    alternatives: {},
+    model: "Every action has an equal and opposite reaction."
+  },
 
-      // Topic 3: Kinematics
-      {
-        topic: 3,
-        type: "definition",
-        question: "Define displacement.",
-        keywords: ["distance", "specified direction"],
-        alternatives: { "specified direction": ["given direction"] },
-        model: "Displacement is the distance moved in a specified direction."
-      },
-      {
-        topic: 3,
-        type: "definition",
-        question: "Define velocity.",
-        keywords: ["rate", "change", "displacement"],
-        alternatives: {},
-        model: "Velocity is the rate of change of displacement."
-      },
-      {
-        topic: 3,
-        type: "definition",
-        question: "Define acceleration.",
-        keywords: ["rate", "change", "velocity"],
-        alternatives: {},
-        model: "Acceleration is the rate of change of velocity."
-      },
+  // Topic 5: Forces, density and pressure
+  {
+    topic: 5,
+    type: "definition",
+    question: "Define pressure.",
+    keywords: ["force", "area"],
+    alternatives: { "area": ["per unit area"] },
+    model: "Pressure is defined as force per unit area."
+  },
+  {
+    topic: 5,
+    type: "definition",
+    question: "Define density.",
+    keywords: ["mass", "volume"],
+    alternatives: {},
+    model: "Density is mass per unit volume."
+  },
 
-      // Topic 4: Dynamics
-      {
-        topic: 4,
-        type: "definition",
-        question: "State Newton’s First Law.",
-        keywords: ["object", "remains at rest", "uniform motion", "resultant force"],
-        alternatives: { "uniform motion": ["constant velocity"] },
-        model: "An object remains at rest or in uniform motion unless acted upon by a resultant force."
-      },
-      {
-        topic: 4,
-        type: "definition",
-        question: "State Newton’s Second Law.",
-        keywords: ["acceleration", "proportional", "force", "mass"],
-        alternatives: {},
-        model: "The acceleration of an object is directly proportional to the net force and inversely proportional to its mass."
-      },
-      {
-        topic: 4,
-        type: "definition",
-        question: "State Newton’s Third Law.",
-        keywords: ["equal", "opposite", "forces", "different bodies"],
-        alternatives: {},
-        model: "Every action has an equal and opposite reaction."
-      },
+  // Topic 6: Work, energy and power
+  {
+    topic: 6,
+    type: "definition",
+    question: "State what is meant by the work done by a force.",
+    keywords: ["force", "displacement", "direction"],
+    alternatives: { "direction": ["in direction of force"] },
+    model: "Work is done when a force causes a displacement in the direction of the force."
+  },
+  // Topic 7 additional
+  {
+    topic: 7,
+    type: "definition",
+    question: "Define the Young modulus of a material.",
+    keywords: ["stress", "strain", "proportionality"],
+    alternatives: {},
+    model: "The Young modulus is the ratio of stress to strain within the limit of proportionality."
+  },
+  // Topic 8 additional
+  {
+    topic: 8,
+    type: "definition",
+    question: "By reference to the direction of propagation of energy, state what is meant by a transverse wave.",
+    keywords: ["perpendicular", "oscillation", "energy propagation"],
+    alternatives: {},
+    model: "A transverse wave is one in which the oscillation is perpendicular to the direction of energy propagation."
+  },
+  // Topic 7: Deformation of solids
+  {
+    topic: 7,
+    type: "definition",
+    question: "State Hooke's Law.",
+    keywords: ["extension", "proportional", "force"],
+    alternatives: {},
+    model: "Hooke's Law states that the extension of a spring is proportional to the applied force, provided the limit of proportionality is not exceeded."
+  },
+  {
+    topic: 7,
+    type: "definition",
+    question: "Define stress.",
+    keywords: ["force", "cross-sectional area"],
+    alternatives: {},
+    model: "Stress is force per unit cross-sectional area."
+  },
+  {
+    topic: 7,
+    type: "definition",
+    question: "Define strain.",
+    keywords: ["extension", "original length"],
+    alternatives: {},
+    model: "Strain is extension divided by original length."
+  },
 
-      // Topic 5: Forces, density and pressure
-      {
-        topic: 5,
-        type: "definition",
-        question: "Define pressure.",
-        keywords: ["force", "area"],
-        alternatives: { "area": ["per unit area"] },
-        model: "Pressure is defined as force per unit area."
-      },
-      {
-        topic: 5,
-        type: "definition",
-        question: "Define density.",
-        keywords: ["mass", "volume"],
-        alternatives: {},
-        model: "Density is mass per unit volume."
-      },
+  // Topic 8: Waves
+  {
+    topic: 8,
+    type: "definition",
+    question: "Define wavelength.",
+    keywords: ["distance", "adjacent", "same phase"],
+    alternatives: {},
+    model: "Wavelength is the distance between two adjacent points that are in the same phase of oscillation."
+  },
+  {
+    topic: 8,
+    type: "definition",
+    question: "Define frequency.",
+    keywords: ["number of oscillations", "per second"],
+    alternatives: { "oscillations": ["vibrations", "cycles"] },
+    model: "Frequency is the number of oscillations per second."
+  },
+  {
+    topic: 8,
+    type: "definition",
+    question: "Define wavefront.",
+    keywords: ["points", "same phase"],
+    alternatives: {},
+    model: "A wavefront is a line joining points on a wave that are in the same phase."
+  },
 
-      // Topic 6: Work, energy and power
-      {
-        topic: 6,
-        type: "definition",
-        question: "Define work done.",
-        keywords: ["force", "displacement", "direction"],
-        alternatives: { "direction": ["in direction of force"] },
-        model: "Work is the product of force and displacement in the direction of the force."
-      },
-      {
-        topic: 6,
-        type: "definition",
-        question: "Define kinetic energy.",
-        keywords: ["half", "mass", "velocity squared"],
-        alternatives: { "velocity squared": ["speed squared"] },
-        model: "Kinetic energy is equal to one half times mass times velocity squared."
-      },
-      {
-        topic: 6,
-        type: "definition",
-        question: "Define power.",
-        keywords: ["rate", "energy transfer"],
-        alternatives: { "energy transfer": ["doing work"] },
-        model: "Power is the rate of energy transfer or doing work."
-      },
+  // Topic 9: Superposition
+  {
+    topic: 9,
+    type: "definition",
+    question: "State the principle of superposition.",
+    keywords: ["resultant", "sum", "individual displacements"],
+    alternatives: {},
+    model: "When two or more waves overlap, the resultant displacement is the vector sum of the individual displacements."
+  },
+  {
+    topic: 9,
+    type: "definition",
+    question: "Define constructive interference.",
+    keywords: ["waves", "same phase", "reinforce"],
+    alternatives: {},
+    model: "Constructive interference occurs when waves meet in phase and reinforce each other."
+  },
+  {
+    topic: 9,
+    type: "definition",
+    question: "Define destructive interference.",
+    keywords: ["waves", "opposite phase", "cancel"],
+    alternatives: {},
+    model: "Destructive interference occurs when waves meet in opposite phase and cancel out."
+  },
 
-      // Topic 7: Deformation of solids
-      {
-        topic: 7,
-        type: "definition",
-        question: "State Hooke's Law.",
-        keywords: ["extension", "proportional", "force"],
-        alternatives: {},
-        model: "Hooke's Law states that the extension of a spring is proportional to the applied force, provided the limit of proportionality is not exceeded."
-      },
-      {
-        topic: 7,
-        type: "definition",
-        question: "Define stress.",
-        keywords: ["force", "cross-sectional area"],
-        alternatives: {},
-        model: "Stress is force per unit cross-sectional area."
-      },
-      {
-        topic: 7,
-        type: "definition",
-        question: "Define strain.",
-        keywords: ["extension", "original length"],
-        alternatives: {},
-        model: "Strain is extension divided by original length."
-      },
+  // Topic 10: Electricity
+  {
+    topic: 10,
+    type: "definition",
+    question: "Define electric current.",
+    keywords: ["rate", "flow", "charge"],
+    alternatives: {},
+    model: "Electric current is the rate of flow of electric charge."
+  },
+  {
+    topic: 10,
+    type: "definition",
+    question: "Define electromotive force (e.m.f.).",
+    keywords: ["work done", "unit charge"],
+    alternatives: {},
+    model: "E.m.f. is the work done per unit charge in moving charge around a complete circuit."
+  },
 
-      // Topic 8: Waves
-      {
-        topic: 8,
-        type: "definition",
-        question: "Define wavelength.",
-        keywords: ["distance", "adjacent", "same phase"],
-        alternatives: {},
-        model: "Wavelength is the distance between two adjacent points that are in the same phase of oscillation."
-      },
-      {
-        topic: 8,
-        type: "definition",
-        question: "Define frequency.",
-        keywords: ["number of oscillations", "per second"],
-        alternatives: { "oscillations": ["vibrations", "cycles"] },
-        model: "Frequency is the number of oscillations per second."
-      },
-      {
-        topic: 8,
-        type: "definition",
-        question: "Define wavefront.",
-        keywords: ["points", "same phase"],
-        alternatives: {},
-        model: "A wavefront is a line joining points on a wave that are in the same phase."
-      },
+  // Topic 11: D.C. circuits
+  {
+    topic: 11,
+    type: "definition",
+    question: "Define resistance.",
+    keywords: ["voltage", "current"],
+    alternatives: {},
+    model: "Resistance is the ratio of voltage to current in a conductor."
+  },
+  {
+    topic: 11,
+    type: "definition",
+    question: "Define internal resistance.",
+    keywords: ["resistance", "within", "source"],
+    alternatives: {},
+    model: "Internal resistance is the resistance within a source of e.m.f. that causes a drop in the terminal voltage."
+  },
 
-      // Topic 9: Superposition
-      {
-        topic: 9,
-        type: "definition",
-        question: "State the principle of superposition.",
-        keywords: ["resultant", "sum", "individual displacements"],
-        alternatives: {},
-        model: "When two or more waves overlap, the resultant displacement is the vector sum of the individual displacements."
-      },
-      {
-        topic: 9,
-        type: "definition",
-        question: "Define constructive interference.",
-        keywords: ["waves", "same phase", "reinforce"],
-        alternatives: {},
-        model: "Constructive interference occurs when waves meet in phase and reinforce each other."
-      },
-      {
-        topic: 9,
-        type: "definition",
-        question: "Define destructive interference.",
-        keywords: ["waves", "opposite phase", "cancel"],
-        alternatives: {},
-        model: "Destructive interference occurs when waves meet in opposite phase and cancel out."
-      },
-
-      // Topic 10: Electricity
-      {
-        topic: 10,
-        type: "definition",
-        question: "Define electric current.",
-        keywords: ["rate", "flow", "charge"],
-        alternatives: {},
-        model: "Electric current is the rate of flow of electric charge."
-      },
-      {
-        topic: 10,
-        type: "definition",
-        question: "Define electromotive force (e.m.f.).",
-        keywords: ["work done", "unit charge"],
-        alternatives: {},
-        model: "E.m.f. is the work done per unit charge in moving charge around a complete circuit."
-      },
-
-      // Topic 11: D.C. circuits
-      {
-        topic: 11,
-        type: "definition",
-        question: "Define resistance.",
-        keywords: ["voltage", "current"],
-        alternatives: {},
-        model: "Resistance is the ratio of voltage to current in a conductor."
-      },
-      {
-        topic: 11,
-        type: "definition",
-        question: "Define internal resistance.",
-        keywords: ["resistance", "within", "source"],
-        alternatives: {},
-        model: "Internal resistance is the resistance within a source of e.m.f. that causes a drop in the terminal voltage."
-      },
-
-      // Topic 12: Particle and nuclear physics
-      {
-        topic: 12,
-        type: "definition",
-        question: "Define nucleon number.",
-        keywords: ["total", "protons", "neutrons"],
-        alternatives: {},
-        model: "Nucleon number is the total number of protons and neutrons in a nucleus."
-      },
-      {
-        topic: 12,
-        type: "definition",
-        question: "Define proton number.",
-        keywords: ["number", "protons"],
-        alternatives: {},
-        model: "Proton number is the number of protons in the nucleus of an atom."
-      },
-      {
-        topic: 12,
-        type: "definition",
-        question: "Define isotope.",
-        keywords: ["same", "protons", "different", "neutrons"],
-        alternatives: {},
-        model: "Isotopes are atoms of the same element with the same number of protons but different numbers of neutrons."
-      },
-        model: "Work is the product of force and displacement in the direction of the force."
-      },
-      {
-        topic: 6,
-        type: "definition",
-        question: "Define kinetic energy.",
-        keywords: ["half", "mass", "velocity squared"],
-        alternatives: { "velocity squared": ["speed squared"] },
-        model: "Kinetic energy is equal to one half times mass times velocity squared."
-      },
-      {
-        topic: 6,
-        type: "definition",
-        question: "Define power.",
-        keywords: ["rate", "energy transfer"],
-        alternatives: { "energy transfer": ["doing work"] },
-        model: "Power is the rate of energy transfer or doing work."
-      }
-        model: "An object remains at rest or in uniform motion unless acted upon by a resultant force."
-      },
-      {
-        topic: 4,
-        type: "definition",
-        question: "State Newton’s Second Law.",
-        keywords: ["acceleration", "proportional", "force", "mass"],
-        alternatives: {},
-        model: "The acceleration of an object is directly proportional to the net force and inversely proportional to its mass."
-      },
-      {
-        topic: 4,
-        type: "definition",
-        question: "State Newton’s Third Law.",
-        keywords: ["equal", "opposite", "forces", "different bodies"],
-        alternatives: {},
-        model: "Every action has an equal and opposite reaction."
-      }
-    ];
+  // Topic 12: Particle and nuclear physics
+  {
+    topic: 12,
+    type: "definition",
+    question: "Define nucleon number.",
+    keywords: ["total", "protons", "neutrons"],
+    alternatives: {},
+    model: "Nucleon number is the total number of protons and neutrons in a nucleus."
+  },
+  {
+    topic: 12,
+    type: "definition",
+    question: "Define proton number.",
+    keywords: ["number", "protons"],
+    alternatives: {},
+    model: "Proton number is the number of protons in the nucleus of an atom."
+  },
+  {
+    topic: 12,
+    type: "definition",
+    question: "Define isotope.",
+    keywords: ["same", "protons", "different", "neutrons"],
+    alternatives: {},
+    model: "Isotopes are atoms of the same element with the same number of protons but different numbers of neutrons."
+  },
+  {
+    topic: 10,
+    type: "definition",
+    question: "Define electric potential difference.",
+    keywords: ["work done", "unit charge", "between two points"],
+    alternatives: {},
+    model: "Electric potential difference is the work done per unit charge to move a charge between two points."
+  }
+];
 
     function startPractice() {
       const ids = [...document.querySelectorAll("input[type='checkbox']")].filter(cb => cb.checked).map(cb => cb.id);
