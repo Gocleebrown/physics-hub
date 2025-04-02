@@ -45,6 +45,7 @@
   <div id="question-box"></div>
 
   <script>
+    // Topics (renumbered: Topic 1 is Physical quantities and units, Topic 2 is Kinematics, etc.)
     const topics = [
       "Physical quantities and units",
       "Kinematics",
@@ -82,54 +83,502 @@
       all.forEach(box => box.checked = isChecked);
     }
 
+    // Full Definitions for Topics 1 - 11
     const questionBank = [
-      // SUVAT sample equation question for Topic 2
+      // Topic 1: Physical quantities and units
+      {
+        topic: 1,
+        type: "definition",
+        question: "Define a scalar quantity.",
+        keywords: ["magnitude", "no direction"],
+        alternatives: {
+          "magnitude": ["size", "value", "quantity"],
+          "no direction": ["no specific direction", "direction not involved"]
+        },
+        model: "A scalar quantity has magnitude (or size/value) and no direction."
+      },
+      {
+        topic: 1,
+        type: "definition",
+        question: "Define a vector quantity.",
+        keywords: ["magnitude", "direction"],
+        alternatives: {
+          "magnitude": ["size", "value", "quantity"],
+          "direction": ["specified direction", "particular direction"]
+        },
+        model: "A vector quantity has both magnitude (or size/value) and direction."
+      },
+      {
+        topic: 1,
+        type: "definition",
+        question: "Define SI base quantity.",
+        keywords: ["defined", "without reference", "other quantities"],
+        alternatives: {
+          "defined": ["specified"],
+          "without reference": ["independent"]
+        },
+        model: "A base quantity is a quantity defined without reference to other quantities."
+      },
+      {
+        topic: 1,
+        type: "definition",
+        question: "Define random error.",
+        keywords: ["unpredictable", "varying", "measurement"],
+        alternatives: {},
+        model: "A random error is an unpredictable variation in measurement from one reading to another."
+      },
+      {
+        topic: 1,
+        type: "definition",
+        question: "Define systematic error.",
+        keywords: ["consistent", "bias", "same direction"],
+        alternatives: {},
+        model: "A systematic error is a consistent bias in measurement that occurs in the same direction each time."
+      },
+      {
+        topic: 1,
+        type: "definition",
+        question: "Define precision.",
+        keywords: ["consistency", "repeat readings"],
+        alternatives: {},
+        model: "Precision refers to the consistency of repeat readings."
+      },
+      {
+        topic: 1,
+        type: "definition",
+        question: "Define accuracy.",
+        keywords: ["closeness", "true value"],
+        alternatives: {},
+        model: "Accuracy refers to how close a measured value is to the true value."
+      },
+      {
+        topic: 1,
+        type: "definition",
+        question: "Define absolute uncertainty.",
+        keywords: ["margin", "measured value"],
+        alternatives: {},
+        model: "Absolute uncertainty is the margin of uncertainty in a measured value."
+      },
+      {
+        topic: 1,
+        type: "definition",
+        question: "Define percentage uncertainty.",
+        keywords: ["absolute uncertainty", "percentage", "measured value"],
+        alternatives: {},
+        model: "Percentage uncertainty is the absolute uncertainty expressed as a percentage of the measured value."
+      },
+      {
+        topic: 1,
+        type: "definition",
+        question: "Explain how to combine uncertainties for multiplication and division.",
+        keywords: ["add", "percentage", "uncertainties"],
+        alternatives: {},
+        model: "When multiplying or dividing values, add the percentage uncertainties."
+      },
+
+      // Topic 2: Kinematics
       {
         topic: 2,
-        type: "equation",
-        question: function() {
-          const u = Math.floor(Math.random() * 10 + 1); // initial speed
-          const a = Math.floor(Math.random() * 5 + 1); // acceleration
-          const t = Math.floor(Math.random() * 5 + 1); // time
-          const s = u * t + 0.5 * a * t * t;
-          return {
-            text: `A body moves with initial velocity ${u} m/s and constant acceleration ${a} m/s² for ${t} s. Calculate the displacement.`,
-            answer: s.toFixed(2) + " m"
-          };
-        }
-      }
+        type: "definition",
+        question: "Define displacement.",
+        keywords: ["distance", "specified direction"],
+        alternatives: {
+          "specified direction": ["in a direction", "particular direction"]
+        },
+        model: "Displacement is the distance moved in a specified direction."
+      },
       {
         topic: 2,
-        type: "equation",
-        question: function() {
-          const m = Math.floor(Math.random() * 20 + 5);
-          const angle = Math.floor(Math.random() * 30 + 10);
-          const d = Math.floor(Math.random() * 10 + 2);
-          const g = 9.8;
-          const radians = angle * Math.PI / 180;
-          const a = g * Math.sin(radians);
-          const vSquared = 2 * a * d;
-          const v = Math.sqrt(vSquared);
-          return {
-            text: `A ${m} kg block slides down a frictionless slope inclined at ${angle}°. It travels ${d} m. Calculate the speed at the bottom.`,
-            answer: v.toFixed(2),
-            model: `a = g·sin(θ) = 9.8·sin(${angle}°) = ${a.toFixed(2)} m/s², then v² = 2ad = ${vSquared.toFixed(2)} ⇒ v = ${v.toFixed(2)} m/s`,
-            image: `https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Free_body_diagram_-_inclined_plane_no_friction.svg/640px-Free_body_diagram_-_inclined_plane_no_friction.svg.png`
-          };
-        }
+        type: "definition",
+        question: "Define speed.",
+        keywords: ["distance", "per unit time"],
+        alternatives: {
+          "per unit time": ["in a given time", "per second"]
+        },
+        model: "Speed is the distance travelled per unit time."
+      },
+      {
+        topic: 2,
+        type: "definition",
+        question: "Define velocity.",
+        keywords: ["displacement", "per unit time"],
+        alternatives: {
+          "per unit time": ["in a given time", "per second"]
+        },
+        model: "Velocity is the displacement per unit time."
+      },
+      {
+        topic: 2,
+        type: "definition",
+        question: "Define acceleration.",
+        keywords: ["change in velocity", "per unit time"],
+        alternatives: {
+          "change in velocity": ["difference in velocity"]
+        },
+        model: "Acceleration is the change in velocity per unit time."
+      },
+      {
+        topic: 2,
+        type: "definition",
+        question: "State what the gradient of a displacement–time graph represents.",
+        keywords: ["velocity"],
+        alternatives: {},
+        model: "The gradient of a displacement–time graph represents velocity."
+      },
+      {
+        topic: 2,
+        type: "definition",
+        question: "State what the gradient of a velocity–time graph represents.",
+        keywords: ["acceleration"],
+        alternatives: {},
+        model: "The gradient of a velocity–time graph represents acceleration."
+      },
+      {
+        topic: 2,
+        type: "definition",
+        question: "State what the area under a velocity–time graph represents.",
+        keywords: ["displacement"],
+        alternatives: {},
+        model: "The area under a velocity–time graph represents displacement."
+      },
+
+      // Topic 3: Dynamics
+      {
+        topic: 3,
+        type: "definition",
+        question: "State Newton’s First Law of Motion.",
+        keywords: ["body remains at rest", "constant velocity", "no resultant force"],
+        alternatives: {
+          "constant velocity": ["uniform motion"]
+        },
+        model: "A body remains at rest or in constant velocity if there is no resultant force acting on it."
+      },
+      {
+        topic: 3,
+        type: "definition",
+        question: "State Newton’s Second Law of Motion.",
+        keywords: ["acceleration", "proportional", "net force", "inversely", "mass"],
+        alternatives: {},
+        model: "The acceleration of an object is directly proportional to the net force and inversely proportional to its mass."
+      },
+      {
+        topic: 3,
+        type: "definition",
+        question: "State Newton’s Third Law of Motion.",
+        keywords: ["equal", "opposite", "forces", "different bodies"],
+        alternatives: {},
+        model: "Every action has an equal and opposite reaction on different bodies."
+      },
+      {
+        topic: 3,
+        type: "definition",
+        question: "Define inertia.",
+        keywords: ["reluctance", "change", "motion"],
+        alternatives: {
+          "reluctance": ["resistance"]
+        },
+        model: "Inertia is the reluctance of a body to change its state of motion."
+      },
+
+      // Topic 4: Forces, density and pressure
+      {
+        topic: 4,
+        type: "definition",
+        question: "Define pressure.",
+        keywords: ["force", "area"],
+        alternatives: { "area": ["per unit area"] },
+        model: "Pressure is defined as force per unit area."
+      },
+      {
+        topic: 4,
+        type: "definition",
+        question: "Define density.",
+        keywords: ["mass", "volume"],
+        alternatives: {},
+        model: "Density is mass per unit volume."
+      },
+
+      // Topic 5: Work, energy and power
+      {
+        topic: 5,
+        type: "definition",
+        question: "State what is meant by the work done by a force.",
+        keywords: ["force", "displacement", "direction"],
+        alternatives: { "direction": ["in direction of force"] },
+        model: "Work is done when a force causes a displacement in the direction of the force."
+      },
+      {
+        topic: 5,
+        type: "definition",
+        question: "Define kinetic energy.",
+        keywords: ["half", "mass", "velocity squared"],
+        alternatives: { "velocity squared": ["speed squared"] },
+        model: "Kinetic energy is equal to one half times mass times velocity squared."
+      },
+      {
+        topic: 5,
+        type: "definition",
+        question: "Define power.",
+        keywords: ["rate", "energy transfer"],
+        alternatives: { "energy transfer": ["doing work"] },
+        model: "Power is the rate of energy transfer or doing work."
+      },
+
+      // Topic 6: Deformation of solids
+      {
+        topic: 6,
+        type: "definition",
+        question: "State Hooke's Law.",
+        keywords: ["extension", "proportional", "force"],
+        alternatives: {},
+        model: "Hooke's Law states that the extension of a spring is proportional to the applied force, provided the limit of proportionality is not exceeded."
+      },
+      {
+        topic: 6,
+        type: "definition",
+        question: "Define stress.",
+        keywords: ["force", "cross-sectional area"],
+        alternatives: {},
+        model: "Stress is force per unit cross-sectional area."
+      },
+      {
+        topic: 6,
+        type: "definition",
+        question: "Define strain.",
+        keywords: ["extension", "original length"],
+        alternatives: {},
+        model: "Strain is the extension divided by the original length."
+      },
+
+      // Topic 7: Waves
+      {
+        topic: 7,
+        type: "definition",
+        question: "Define wavelength.",
+        keywords: ["distance", "adjacent", "same phase"],
+        alternatives: {},
+        model: "Wavelength is the distance between two adjacent points that are in the same phase of oscillation."
+      },
+      {
+        topic: 7,
+        type: "definition",
+        question: "Define frequency.",
+        keywords: ["number of oscillations", "per second"],
+        alternatives: { "oscillations": ["vibrations", "cycles"] },
+        model: "Frequency is the number of oscillations per second."
+      },
+      {
+        topic: 7,
+        type: "definition",
+        question: "Define wavefront.",
+        keywords: ["points", "same phase"],
+        alternatives: {},
+        model: "A wavefront is a line joining points on a wave that are in the same phase."
+      },
+
+      // Topic 8: Superposition
+      {
+        topic: 8,
+        type: "definition",
+        question: "State the principle of superposition.",
+        keywords: ["resultant", "sum", "individual displacements"],
+        alternatives: {},
+        model: "When two or more waves overlap, the resultant displacement is the vector sum of the individual displacements."
+      },
+      {
+        topic: 8,
+        type: "definition",
+        question: "Define constructive interference.",
+        keywords: ["waves", "same phase", "reinforce"],
+        alternatives: {},
+        model: "Constructive interference occurs when waves meet in phase and reinforce each other."
+      },
+      {
+        topic: 8,
+        type: "definition",
+        question: "Define destructive interference.",
+        keywords: ["waves", "opposite phase", "cancel"],
+        alternatives: {},
+        model: "Destructive interference occurs when waves meet in opposite phase and cancel out."
+      },
+
+      // Topic 9: Electricity
+      {
+        topic: 9,
+        type: "definition",
+        question: "Define electric current.",
+        keywords: ["rate", "flow", "charge"],
+        alternatives: {},
+        model: "Electric current is the rate of flow of electric charge."
+      },
+      {
+        topic: 9,
+        type: "definition",
+        question: "Define electromotive force (e.m.f.).",
+        keywords: ["work done", "unit charge"],
+        alternatives: {},
+        model: "E.m.f. is the work done per unit charge in moving charge around a complete circuit."
+      },
+      {
+        topic: 9,
+        type: "definition",
+        question: "Define electric potential difference.",
+        keywords: ["work done", "unit charge", "between two points"],
+        alternatives: {},
+        model: "Electric potential difference is the work done per unit charge to move a charge between two points."
+      },
+
+      // Topic 10: D.C. circuits
+      {
+        topic: 10,
+        type: "definition",
+        question: "Define resistance.",
+        keywords: ["voltage", "current"],
+        alternatives: {},
+        model: "Resistance is the ratio of voltage to current in a conductor."
+      },
+      {
+        topic: 10,
+        type: "definition",
+        question: "Define internal resistance.",
+        keywords: ["resistance", "within", "source"],
+        alternatives: {},
+        model: "Internal resistance is the resistance within a source of e.m.f. that causes a drop in the terminal voltage."
+      },
+
+      // Topic 11: Particle and nuclear physics
+      {
+        topic: 11,
+        type: "definition",
+        question: "Define nucleon number.",
+        keywords: ["total", "protons", "neutrons"],
+        alternatives: {},
+        model: "Nucleon number is the total number of protons and neutrons in a nucleus."
+      },
+      {
+        topic: 11,
+        type: "definition",
+        question: "Define proton number.",
+        keywords: ["number", "protons"],
+        alternatives: {},
+        model: "Proton number is the number of protons in the nucleus of an atom."
+      },
+      {
+        topic: 11,
+        type: "definition",
+        question: "Define isotope.",
+        keywords: ["same", "protons", "different", "neutrons"],
+        alternatives: {},
+        model: "Isotopes are atoms of the same element with the same number of protons but different numbers of neutrons."
+      },
+      {
+        topic: 11,
+        type: "definition",
+        question: "Define a hadron.",
+        keywords: ["quark", "strong force", "baryon", "meson"],
+        alternatives: {},
+        model: "A hadron is a particle made of quarks, held together by the strong nuclear force. Hadrons include baryons and mesons."
+      },
+      {
+        topic: 11,
+        type: "definition",
+        question: "Define a baryon.",
+        keywords: ["three quarks"],
+        alternatives: {},
+        model: "A baryon is a hadron consisting of three quarks."
+      },
+      {
+        topic: 11,
+        type: "definition",
+        question: "Define a meson.",
+        keywords: ["quark", "antiquark"],
+        alternatives: {},
+        model: "A meson is a hadron made of a quark and an antiquark."
+      },
+      {
+        topic: 11,
+        type: "definition",
+        question: "Define a lepton.",
+        keywords: ["fundamental", "no strong interaction"],
+        alternatives: {},
+        model: "A lepton is a fundamental particle that does not experience the strong nuclear force, e.g. electron, muon, or neutrino."
+      },
+      {
+        topic: 11,
+        type: "definition",
+        question: "Define a quark.",
+        keywords: ["six flavours", "up", "down", "charm", "strange", "top", "bottom"],
+        alternatives: {},
+        model: "A quark is a fundamental particle that comes in six flavours: up, down, charm, strange, top, and bottom."
+      },
+      {
+        topic: 11,
+        type: "definition",
+        question: "State the charges of up and down quarks.",
+        keywords: ["up quark", "+2/3", "down quark", "-1/3"],
+        alternatives: {},
+        model: "The up quark has a charge of +2/3 e, and the down quark has a charge of -1/3 e."
+      },
+      {
+        topic: 11,
+        type: "definition",
+        question: "State the quark composition of a proton.",
+        keywords: ["uud"],
+        alternatives: {},
+        model: "A proton is composed of two up quarks and one down quark (uud)."
+      },
+      {
+        topic: 11,
+        type: "definition",
+        question: "State the quark composition of a neutron.",
+        keywords: ["udd"],
+        alternatives: {},
+        model: "A neutron is composed of one up quark and two down quarks (udd)."
+      },
+      {
+        topic: 11,
+        type: "definition",
+        question: "Define an antiparticle.",
+        keywords: ["same mass", "opposite charge"],
+        alternatives: {},
+        model: "An antiparticle has the same mass as its corresponding particle but opposite charge."
+      },
+      {
+        topic: 11,
+        type: "definition",
+        question: "What is emitted during β– decay?",
+        keywords: ["electron", "antineutrino"],
+        alternatives: {},
+        model: "During β– decay, an electron and an electron antineutrino are emitted."
+      },
+      {
+        topic: 11,
+        type: "definition",
+        question: "What is emitted during β+ decay?",
+        keywords: ["positron", "neutrino"],
+        alternatives: {},
+        model: "During β+ decay, a positron and an electron neutrino are emitted."
+      },
+      {
+        topic: 11,
+        type: "definition",
+        question: "Define the unified atomic mass unit (u).",
+        keywords: ["1/12", "carbon-12"],
+        alternatives: {},
+        model: "One unified atomic mass unit is 1/12 the mass of a carbon-12 atom."
       }
     ];
-
+    
     let currentQuestion = null;
     let score = 0;
-
+    
     function startPractice() {
       score = 0;
       document.getElementById("score").innerText = score;
       askNewQuestion();
       document.getElementById("question-box").scrollIntoView({ behavior: 'smooth' });
     }
-
+    
     function askNewQuestion() {
       const ids = [...document.querySelectorAll("input[type='checkbox']")].filter(cb => cb.checked).map(cb => cb.id);
       const filtered = questionBank.filter(q => {
@@ -139,56 +588,29 @@
           return topicMatch && typeMatch;
         });
       });
-
+      
       if (filtered.length === 0) {
         document.getElementById("question-box").innerText = "No matching questions available yet.";
         return;
       }
-
+      
       const q = filtered[Math.floor(Math.random() * filtered.length)];
       currentQuestion = q;
-      let questionText = "";
-      let modelAnswer = "";
-
-      if (typeof q.question === "function") {
-        const generated = q.question();
-        questionText = generated.text;
-        modelAnswer = generated.answer;
-        q.model = modelAnswer;
-        document.getElementById("question-box").innerHTML = `
-          <strong>Question:</strong> ${questionText}<br><br>
-          <textarea id='student-answer' rows='4' style='width:100%' placeholder='Type your answer here...'></textarea><br>
-          <button onclick='checkDefinition()'>Check Answer</button>
-          <button onclick='showModelAnswer()'>Show Model Answer</button>
-          <button onclick='askNewQuestion()'>Next Question</button>
-          <div id='feedback' style='margin-top: 10px; font-weight: bold;'></div>
-        `;
-      } else {
-        document.getElementById("question-box").innerHTML = `
-          <strong>Question:</strong> ${q.question}<br><br>
-          <textarea id='student-answer' rows='4' style='width:100%' placeholder='Type your answer here...'></textarea><br>
-          <button onclick='checkDefinition()'>Check Answer</button>
-          <button onclick='showModelAnswer()'>Show Model Answer</button>
-          <button onclick='askNewQuestion()'>Next Question</button>
-          <div id='feedback' style='margin-top: 10px; font-weight: bold;'></div>
-        `;
-      }
+      document.getElementById("question-box").innerHTML = `
+        <strong>Question:</strong> ${q.question}<br><br>
+        <textarea id='student-answer' rows='4' style='width:100%' placeholder='Type your answer here...'></textarea><br>
+        <button onclick='checkDefinition()'>Check Answer</button>
+        <button onclick='showModelAnswer()'>Show Model Answer</button>
+        <button onclick='askNewQuestion()'>Next Question</button>
+        <div id='feedback' style='margin-top: 10px; font-weight: bold;'></div>
+      `;
     }
-
+    
     function checkDefinition() {
       const q = currentQuestion;
       const input = document.getElementById("student-answer").value.toLowerCase();
-
-      if (typeof q.question === "function") {
-        const answer = q.model.toLowerCase();
-        const isCorrect = input.includes(answer.split(" ")[0]);
-        let result = isCorrect ? `✅ Correct.` : `✘ Try again.`;
-        result += `<br><em>Model Answer:</em> ${q.model}`;
-        document.getElementById("feedback").innerHTML = result;
-        return;
-      }
-
       const found = [];
+    
       for (let kw of q.keywords) {
         if (input.includes(kw)) {
           found.push(kw);
@@ -201,7 +623,7 @@
           }
         }
       }
-
+    
       const missed = q.keywords.filter(k => !found.includes(k));
       let result = `✅ Matched ${found.length}/${q.keywords.length} keywords.<br>`;
       if (found.length > 0) result += `✔ Found: ${found.join(", ")}<br>`;
@@ -211,13 +633,17 @@
       document.getElementById("score").innerText = score;
       document.getElementById("feedback").innerHTML = result;
     }
-
+    
     function showModelAnswer() {
       const q = currentQuestion;
       document.getElementById("feedback").innerHTML = `<em>Model Answer:</em> ${q.model}`;
     }
-
+    
     generateTopicCheckboxes();
+  </script>
+</body>
+</html>
+
   </script>
 </body>
 </html>
