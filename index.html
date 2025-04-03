@@ -83,7 +83,8 @@
       all.forEach(box => box.checked = isChecked);
     }
 
-    // Combined question bank including both definitions and equation questions
+    // Combined question bank including definitions and equation questions.
+    // (Definitions include those we worked on previously.)
     const questionBank = [
       // ------------------------- Topic 1: Physical quantities and units -------------------------
       {
@@ -138,7 +139,7 @@
           };
         }
       },
-      // Definition questions for Topic 1
+      // Definitions for Topic 1 (restoring our previous definitions)
       {
         topic: 1,
         type: "definition",
@@ -332,7 +333,7 @@
           };
         }
       },
-      // Definition questions for Topic 2
+      // Definitions for Topic 2
       {
         topic: 2,
         type: "definition",
@@ -488,7 +489,41 @@
           };
         }
       },
-      // Definition questions for Topic 3
+      // New Collision Question: Two-dimensional collision with vector momentum conservation.
+      {
+        topic: 3,
+        type: "equation",
+        difficulty: "Hard",
+        multi: true,
+        question: function() {
+          // A 2 kg ball moving horizontally at 5 m/s collides elastically with a 3 kg ball at rest.
+          // After collision, the 2 kg ball moves at 3 m/s at 30° above horizontal.
+          const m1 = 2; // kg
+          const m2 = 3; // kg
+          const v1i = 5; // m/s, horizontal
+          const v2i = 0;
+          const v1f = 3; // m/s after collision
+          const theta1 = 30; // degrees above horizontal
+          // Components for m1 after collision:
+          const v1fx = m1 * v1f * Math.cos(theta1 * Math.PI/180);
+          const v1fy = m1 * v1f * Math.sin(theta1 * Math.PI/180);
+          const p_initial_x = m1 * v1i;
+          const v2fx = (p_initial_x - v1fx) / m2;
+          const v2fy = - (m1 * v1f * Math.sin(theta1 * Math.PI/180)) / m2;
+          const v2f = Math.sqrt(v2fx*v2fx + v2fy*v2fy);
+          const theta2 = Math.atan2(v2fy, v2fx) * (180/Math.PI);
+          return {
+            multi: true,
+            text: `A 2 kg ball moving horizontally at 5 m/s collides elastically with a 3 kg ball initially at rest. After the collision, the 2 kg ball moves at 3 m/s at 30° above the horizontal. Calculate: (a) the speed of the 3 kg ball, and (b) the angle (relative to the horizontal) at which it moves.`,
+            answers: { a: v2f.toFixed(2), b: theta2.toFixed(2) },
+            model: {
+               a: `Conservation in x: 2×5 = 2×3×cos30° + 3×v₂ₓ, so v₂ₓ = (10 - 2×3×cos30°)/3 ≈ ${v2fx.toFixed(2)} m/s. Conservation in y: 0 = 2×3×sin30° + 3×v₂ᵧ, so v₂ᵧ = - (2×3×sin30°)/3 ≈ ${v2fy.toFixed(2)} m/s. Thus, v₂ = √(v₂ₓ²+v₂ᵧ²) ≈ ${v2f.toFixed(2)} m/s.`,
+               b: `Angle = arctan(v₂ᵧ/v₂ₓ) ≈ ${theta2.toFixed(2)}° (below horizontal).`
+            }
+          };
+        }
+      },
+      // Definitions for Topic 3
       {
         topic: 3,
         type: "definition",
@@ -520,31 +555,6 @@
         keywords: ["reluctance", "change", "motion"],
         alternatives: { "reluctance": ["resistance"] },
         model: "Inertia is the tendency of a body to resist changes in its state of motion."
-      },
-      // Additional Hard Multi-Part Question for Topic 3
-      {
-        topic: 3,
-        type: "equation",
-        difficulty: "Hard",
-        multi: true,
-        question: function() {
-          const mass = 5; // kg
-          const F1 = 15; // N to the right
-          const F2 = 10; // N to the left
-          const netF = F1 - F2;
-          const a = netF / mass;
-          const t = 4; // s
-          const v = a * t;
-          return {
-            text: `A ${mass} kg object is acted upon by two forces: ${F1} N to the right and ${F2} N to the left. It starts from rest. Calculate: (a) the net force, (b) the acceleration, and (c) the speed after ${t} s.`,
-            answers: { a: netF.toFixed(2), b: a.toFixed(2), c: v.toFixed(2) },
-            model: {
-               a: `Net force = ${F1} N - ${F2} N = ${netF} N.`,
-               b: `Acceleration = net force / mass = ${netF} / ${mass} = ${a.toFixed(2)} m/s².`,
-               c: `Speed after ${t} s = a×t = ${a.toFixed(2)}×${t} = ${v.toFixed(2)} m/s.`
-            }
-          };
-        }
       },
 
       // ------------------------- Topic 4: Forces, density and pressure -------------------------
@@ -593,7 +603,7 @@
           };
         }
       },
-      // Definition questions for Topic 4
+      // Definitions for Topic 4
       {
         topic: 4,
         type: "definition",
@@ -629,7 +639,7 @@
             answers: { a: pressure.toFixed(0) + " Pa", b: additionalForce.toFixed(2) + " N" },
             model: {
                a: `Pressure = ρgh = ${rho}×${g}×${height} ≈ ${pressure.toFixed(0)} Pa.`,
-               b: `10% increase = ${pressureIncrease.toFixed(0)} Pa, additional force = pressureIncrease × area = ${pressureIncrease.toFixed(0)}×${area_m2.toFixed(3)} ≈ ${additionalForce.toFixed(2)} N.`
+               b: `10% increase = ${pressureIncrease.toFixed(0)} Pa, additional force = pressureIncrease × area ≈ ${additionalForce.toFixed(2)} N.`
             }
           };
         }
@@ -693,7 +703,7 @@
           };
         }
       },
-      // Definition questions for Topic 5
+      // Definitions for Topic 5
       {
         topic: 5,
         type: "definition",
@@ -786,7 +796,7 @@
           };
         }
       },
-      // Definition questions for Topic 6
+      // Definitions for Topic 6
       {
         topic: 6,
         type: "definition",
@@ -882,30 +892,7 @@
           };
         }
       },
-      {
-        topic: 7,
-        type: "equation",
-        question: function() {
-          const L = 3; // m
-          const nodes = 5;
-          const harmonic = nodes - 1; // for a pipe closed at both ends
-          const wavelength = (2 * L) / harmonic;
-          const v = 330; // m/s
-          const frequency = v / wavelength;
-          const period = 1 / frequency;
-          return {
-            multi: true,
-            text: `In a 3 m long pipe closed at both ends, a standing wave is set up with ${nodes} nodes. The speed of sound is ${v} m/s. Calculate: (a) the wavelength, (b) the frequency, and (c) the period of the wave.`,
-            answers: { a: wavelength.toFixed(2) + " m", b: frequency.toFixed(2) + " Hz", c: period.toFixed(4) + " s" },
-            model: {
-               a: `Wavelength = 2L/harmonic = 2×${L}/${harmonic} = ${wavelength.toFixed(2)} m.`,
-               b: `Frequency = v/λ = ${v}/${wavelength.toFixed(2)} ≈ ${frequency.toFixed(2)} Hz.`,
-               c: `Period = 1/frequency ≈ ${period.toFixed(4)} s.`
-            }
-          };
-        }
-      },
-      // Definition questions for Topic 7
+      // Definitions for Topic 7
       {
         topic: 7,
         type: "definition",
@@ -930,17 +917,16 @@
         alternatives: {},
         model: "A wavefront is a line joining points on a wave that are in the same phase."
       },
-      // Additional Hard Multi-Part Question for Topic 7 (for intermediate steps)
+      // Additional Hard Multi-Part Question for Topic 7 (with intermediate steps)
       {
         topic: 7,
         type: "equation",
         difficulty: "Hard",
         multi: true,
         question: function() {
-          // This question asks for verification of intermediate steps.
           const L = 2; // m (pipe closed at one end)
           const v = 305; // m/s
-          const f = v / (4 * L);  // For a pipe closed at one end, fundamental frequency: f = v/(4L)
+          const f = v / (4 * L);  // For a pipe closed at one end, f = v/(4L)
           const T = 1 / f;
           return {
             multi: true,
@@ -987,27 +973,30 @@
           };
         }
       },
-      // Additional Hard Multi-Part Question for Topic 8
+      // Definitions for Topic 8
       {
         topic: 8,
-        type: "equation",
-        difficulty: "Hard",
-        multi: true,
-        question: function() {
-          const A1 = 4; // units
-          const A2 = 4; // units
-          const phaseDiff = 45; // degrees
-          const resultant = Math.sqrt(A1*A1 + A2*A2 + 2*A1*A2*Math.cos(phaseDiff * Math.PI/180));
-          return {
-            text: `Two coherent waves, each with an amplitude of ${A1} units, interfere with a phase difference of ${phaseDiff}°. Calculate: (a) the resultant amplitude, (b) the cosine of the phase difference, and (c) verify the resultant amplitude using the formula.`,
-            answers: { a: resultant.toFixed(2), b: Math.cos(phaseDiff * Math.PI/180).toFixed(2), c: resultant.toFixed(2) },
-            model: {
-               a: `Resultant amplitude = √(A₁² + A₂² + 2A₁A₂cosφ) = √(4² + 4² + 2×4×4×cos(45°)) ≈ ${resultant.toFixed(2)} units.`,
-               b: `cos(45°) ≈ ${Math.cos(phaseDiff * Math.PI/180).toFixed(2)}.`,
-               c: `Verification: using the same formula, we get ≈ ${resultant.toFixed(2)} units.`
-            }
-          };
-        }
+        type: "definition",
+        question: "State the principle of superposition.",
+        keywords: ["resultant", "sum", "individual displacements"],
+        alternatives: {},
+        model: "When two or more waves overlap, the resultant displacement is the sum of the individual displacements."
+      },
+      {
+        topic: 8,
+        type: "definition",
+        question: "Define constructive interference.",
+        keywords: ["waves", "same phase", "reinforce"],
+        alternatives: {},
+        model: "Constructive interference occurs when waves meet in phase and their amplitudes add together."
+      },
+      {
+        topic: 8,
+        type: "definition",
+        question: "Define destructive interference.",
+        keywords: ["waves", "opposite phase", "cancel"],
+        alternatives: {},
+        model: "Destructive interference occurs when waves meet out of phase and cancel each other out."
       },
 
       // ------------------------- Topic 9: Electricity -------------------------
@@ -1055,7 +1044,7 @@
           };
         }
       },
-      // Definition questions for Topic 9
+      // Definitions for Topic 9
       {
         topic: 9,
         type: "definition",
@@ -1165,7 +1154,7 @@
           };
         }
       },
-      // Definition questions for Topic 10
+      // Definitions for Topic 10
       {
         topic: 10,
         type: "definition",
@@ -1254,7 +1243,7 @@
           };
         }
       },
-      // Definition questions for Topic 11
+      // Definitions for Topic 11
       {
         topic: 11,
         type: "definition",
@@ -1382,7 +1371,6 @@
         difficulty: "Hard",
         multi: true,
         question: function() {
-          // Example: A nucleus undergoes beta-minus decay then alpha decay.
           return {
             text: `A nucleus with a mass number of 210 and an atomic number of 84 undergoes beta-minus decay followed by alpha decay. Calculate the final mass number and atomic number.`,
             answers: { a: "206", b: "83" },
