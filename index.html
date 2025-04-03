@@ -85,8 +85,7 @@
 
     // Combined question bank including both definitions and equation questions
     const questionBank = [
-      // --- Topic 1: Physical quantities and units ---
-      // Equation questions (4)
+      // ------------------------- Topic 1: Physical quantities and units -------------------------
       {
         topic: 1,
         type: "equation",
@@ -220,9 +219,24 @@
         alternatives: {},
         model: "When multiplying or dividing values, add their percentage uncertainties."
       },
-      
-      // --- Topic 2: Kinematics ---
-      // Equation questions (7)
+      // Additional Hard Question for Topic 1
+      {
+        topic: 1,
+        type: "equation",
+        difficulty: "Hard",
+        question: function() {
+          const length = 1.20; // m
+          const uncertainty = 0.02; // m
+          const percentage = (uncertainty / length) * 100;
+          return {
+            text: `An object is measured to be ${length} m with an absolute uncertainty of ${uncertainty} m. Calculate the percentage uncertainty of the measurement.`,
+            answer: percentage.toFixed(2) + " %",
+            model: `Percentage uncertainty = (absolute uncertainty/measured value) × 100 = (${uncertainty}/${length})×100 ≈ ${percentage.toFixed(2)} %.`
+          };
+        }
+      },
+
+      // ------------------------- Topic 2: Kinematics -------------------------
       {
         topic: 2,
         type: "equation",
@@ -375,9 +389,33 @@
         alternatives: {},
         model: "The area under a velocity–time graph represents displacement."
       },
-      
-      // --- Topic 3: Dynamics ---
-      // Equation questions (5)
+      // Additional Hard Multi-Part Question for Topic 2
+      {
+        topic: 2,
+        type: "equation",
+        difficulty: "Hard",
+        multi: true,
+        question: function() {
+          const mass = 20; // kg
+          const angle = 23; // degrees
+          const distance = 5; // m
+          const g = 9.8;
+          const a = g * Math.sin(angle * Math.PI / 180);
+          const v = Math.sqrt(2 * a * distance);
+          const ke = 0.5 * mass * v * v;
+          return {
+            text: `A ${mass} kg block slides down a frictionless slope inclined at ${angle}°. It travels ${distance} m. Calculate: (a) the acceleration down the slope, (b) the final speed at the bottom, and (c) the kinetic energy at the bottom.`,
+            answers: { a: a.toFixed(2), b: v.toFixed(2), c: ke.toFixed(2) },
+            model: { 
+               a: `a = g×sin(${angle}°) = 9.8×sin(${angle}°) ≈ ${a.toFixed(2)} m/s²`,
+               b: `v² = 2×a×distance = 2×${a.toFixed(2)}×${distance} ≈ ${(2*a*distance).toFixed(2)}, so v ≈ ${v.toFixed(2)} m/s`,
+               c: `KE = 0.5×mass×v² = 0.5×${mass}×${v.toFixed(2)}² ≈ ${ke.toFixed(2)} J`
+            }
+          };
+        }
+      },
+
+      // ------------------------- Topic 3: Dynamics -------------------------
       {
         topic: 3,
         type: "equation",
@@ -415,7 +453,7 @@
           const a = Math.floor(Math.random() * 5 + 1);
           const F = m * a;
           return {
-            text: `An object of mass ${m} kg accelerates at ${a} m/s². Calculate the net force.`,
+            text: `An object of mass ${m} kg accelerates at ${a} m/s². Calculate the net force acting on it.`,
             answer: F.toFixed(1),
             model: `F = m×a = ${m}×${a} = ${F.toFixed(1)} N.`
           };
@@ -429,7 +467,7 @@
           const friction = Math.floor(Math.random() * 20 + 10);
           const netF = F_applied - friction;
           return {
-            text: `A force of ${F_applied} N is applied while friction opposes with ${friction} N. Calculate the net force.`,
+            text: `A force of ${F_applied} N is applied to an object while friction opposes with ${friction} N. Calculate the net force.`,
             answer: netF.toFixed(1),
             model: `Net force = ${F_applied} N - ${friction} N = ${netF.toFixed(1)} N.`
           };
@@ -483,9 +521,33 @@
         alternatives: { "reluctance": ["resistance"] },
         model: "Inertia is the tendency of a body to resist changes in its state of motion."
       },
-      
-      // --- Topic 4: Forces, density and pressure ---
-      // Equation questions (3)
+      // Additional Hard Multi-Part Question for Topic 3
+      {
+        topic: 3,
+        type: "equation",
+        difficulty: "Hard",
+        multi: true,
+        question: function() {
+          const mass = 5; // kg
+          const F1 = 15; // N to the right
+          const F2 = 10; // N to the left
+          const netF = F1 - F2;
+          const a = netF / mass;
+          const t = 4; // s
+          const v = a * t;
+          return {
+            text: `A ${mass} kg object is acted upon by two forces: ${F1} N to the right and ${F2} N to the left. It starts from rest. Calculate: (a) the net force, (b) the acceleration, and (c) the speed after ${t} s.`,
+            answers: { a: netF.toFixed(2), b: a.toFixed(2), c: v.toFixed(2) },
+            model: {
+               a: `Net force = ${F1} N - ${F2} N = ${netF} N.`,
+               b: `Acceleration = net force / mass = ${netF} / ${mass} = ${a.toFixed(2)} m/s².`,
+               c: `Speed after ${t} s = a×t = ${a.toFixed(2)}×${t} = ${v.toFixed(2)} m/s.`
+            }
+          };
+        }
+      },
+
+      // ------------------------- Topic 4: Forces, density and pressure -------------------------
       {
         topic: 4,
         type: "equation",
@@ -537,7 +599,7 @@
         type: "definition",
         question: "Define pressure.",
         keywords: ["force", "area"],
-        alternatives: { "area": ["per unit area"] },
+        alternatives: {},
         model: "Pressure is defined as force per unit area."
       },
       {
@@ -548,9 +610,32 @@
         alternatives: {},
         model: "Density is the mass per unit volume."
       },
-      
-      // --- Topic 5: Work, energy and power ---
-      // Equation questions (4)
+      // Additional Hard Multi-Part Question for Topic 4
+      {
+        topic: 4,
+        type: "equation",
+        difficulty: "Hard",
+        multi: true,
+        question: function() {
+          const area_cm2 = 500;
+          const area_m2 = area_cm2 / 10000;
+          const height = 2.5;
+          const rho = 1000, g = 9.8;
+          const pressure = rho * g * height;
+          const pressureIncrease = 0.1 * pressure;
+          const additionalForce = pressureIncrease * area_m2;
+          return {
+            text: `A container has a base area of ${area_cm2} cm² and is filled with water to a height of ${height} m. Calculate: (a) the hydrostatic pressure on the base, and (b) the additional force required to increase the pressure by 10%.`,
+            answers: { a: pressure.toFixed(0) + " Pa", b: additionalForce.toFixed(2) + " N" },
+            model: {
+               a: `Pressure = ρgh = ${rho}×${g}×${height} ≈ ${pressure.toFixed(0)} Pa.`,
+               b: `10% increase = ${pressureIncrease.toFixed(0)} Pa, additional force = pressureIncrease × area = ${pressureIncrease.toFixed(0)}×${area_m2.toFixed(3)} ≈ ${additionalForce.toFixed(2)} N.`
+            }
+          };
+        }
+      },
+
+      // ------------------------- Topic 5: Work, energy and power -------------------------
       {
         topic: 5,
         type: "equation",
@@ -633,9 +718,31 @@
         alternatives: { "energy transfer": ["doing work"] },
         model: "Power is the rate at which energy is transferred or work is done."
       },
-      
-      // --- Topic 6: Deformation of solids ---
-      // Equation questions (3)
+      // Additional Hard Multi-Part Question for Topic 5
+      {
+        topic: 5,
+        type: "equation",
+        difficulty: "Hard",
+        multi: true,
+        question: function() {
+          const F = 30; // N
+          const d = 4; // m
+          const time = 8; // s
+          const work = F * d;
+          const power = work / time;
+          return {
+            text: `A force of ${F} N is applied to move an object through ${d} m in ${time} s. Calculate: (a) the work done, (b) the power output, and (c) if the force were increased by 50%, what would be the new work done over the same distance?`,
+            answers: { a: work.toFixed(1), b: power.toFixed(1), c: (F * 1.5 * d).toFixed(1) },
+            model: {
+               a: `Work = F × d = ${F}×${d} = ${work.toFixed(1)} J.`,
+               b: `Power = work/time = ${work.toFixed(1)}/${time} ≈ ${power.toFixed(1)} W.`,
+               c: `New force = 1.5×${F} = ${F * 1.5} N, so new work = new force × d = ${F * 1.5}×${d} = ${(F*1.5*d).toFixed(1)} J.`
+            }
+          };
+        }
+      },
+
+      // ------------------------- Topic 6: Deformation of solids -------------------------
       {
         topic: 6,
         type: "equation",
@@ -704,9 +811,29 @@
         alternatives: {},
         model: "Strain is the extension divided by the original length."
       },
-      
-      // --- Topic 7: Waves ---
-      // Equation questions (7)
+      // Additional Hard Multi-Part Question for Topic 6
+      {
+        topic: 6,
+        type: "equation",
+        difficulty: "Hard",
+        multi: true,
+        question: function() {
+          const length = 2; // m
+          const area = 1e-4; // m²
+          const force = 10000; // N
+          const E = 200e9; // Pa
+          const stress = force / area;
+          const strain = stress / E;
+          const elongation = length * strain;
+          return {
+            text: `A metal rod of length ${length} m and cross-sectional area ${area} m² is subjected to a tensile force of ${force} N. If the Young's modulus is ${E/1e9} GPa, calculate: (a) the stress, (b) the strain, and (c) the elongation of the rod.`,
+            answers: { a: stress.toExponential(2) + " Pa", b: strain.toExponential(2), c: elongation.toExponential(2) + " m" },
+            model: `a) Stress = F/A = ${force}/${area} = ${stress.toExponential(2)} Pa; b) Strain = stress/E = ${stress.toExponential(2)}/${E} = ${strain.toExponential(2)}; c) Elongation = original length × strain = ${length}×${strain.toExponential(2)} ≈ ${elongation.toExponential(2)} m.`
+          };
+        }
+      },
+
+      // ------------------------- Topic 7: Waves -------------------------
       {
         topic: 7,
         type: "equation",
@@ -731,28 +858,9 @@
           const x = (Math.floor(Math.random() * 20 + 10)) / 1000;
           const lambda = (d * x) / (D / 100);
           return {
-            text: `In a double-slit experiment, with a slit separation of ${(d*1000).toFixed(1)} mm, screen distance of ${D} cm, and fringe spacing of ${(x*1000).toFixed(1)} mm, calculate the wavelength in nm.`,
+            text: `In a double-slit experiment with a slit separation of ${(d*1000).toFixed(1)} mm, a screen distance of ${D} cm, and a fringe spacing of ${(x*1000).toFixed(1)} mm, calculate the wavelength in nm.`,
             answer: (lambda * 1e9).toFixed(1),
-            model: `λ = (d×x)/(D/100) = (${d}×${x})/( ${D}/100) = ${(lambda*1e9).toFixed(1)} nm.`
-          };
-        }
-      },
-      {
-        topic: 7,
-        type: "equation",
-        question: function() {
-          const n = Math.floor(Math.random() * 3 + 1);
-          const v = Math.floor(Math.random() * 100 + 300);
-          const L = Math.floor(Math.random() * 3 + 1);
-          const f = v / (4 * L);
-          const T = 1 / f;
-          return {
-            multi: true,
-            text: `A pipe closed at one end has a length of ${L} m and a sound speed of ${v} m/s.
-(a) Calculate the fundamental frequency.
-(b) Calculate the time period.`,
-            answers: { a: f.toFixed(1), b: T.toFixed(3) },
-            model: { a: `f = v/(4L) = ${v}/(4×${L}) = ${f.toFixed(1)} Hz`, b: `T = 1/f = 1/${f.toFixed(1)} = ${T.toFixed(3)} s` }
+            model: `λ = (d×x)/(D/100) = (${d}×${x})/(${D}/100) = ${(lambda*1e9).toFixed(1)} nm.`
           };
         }
       },
@@ -778,15 +886,22 @@
         topic: 7,
         type: "equation",
         question: function() {
-          // Additional standing wave on a string question with diagram
-          const L = Math.floor(Math.random() * 4 + 1);
-          const v = Math.floor(Math.random() * 100 + 200);
-          const f = v / (2 * L);
+          const L = 3; // m
+          const nodes = 5;
+          const harmonic = nodes - 1; // for a pipe closed at both ends
+          const wavelength = (2 * L) / harmonic;
+          const v = 330; // m/s
+          const frequency = v / wavelength;
+          const period = 1 / frequency;
           return {
-            text: `A string of length ${L} m is fixed at both ends and has a wave speed of ${v} m/s. Calculate the fundamental frequency.`,
-            answer: f.toFixed(1),
-            model: `Fundamental frequency = v/(2L) = ${v}/(2×${L}) = ${f.toFixed(1)} Hz.`,
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wave_on_a_string.svg/640px-Wave_on_a_string.svg.png"
+            multi: true,
+            text: `In a 3 m long pipe closed at both ends, a standing wave is set up with ${nodes} nodes. The speed of sound is ${v} m/s. Calculate: (a) the wavelength, (b) the frequency, and (c) the period of the wave.`,
+            answers: { a: wavelength.toFixed(2) + " m", b: frequency.toFixed(2) + " Hz", c: period.toFixed(4) + " s" },
+            model: {
+               a: `Wavelength = 2L/harmonic = 2×${L}/${harmonic} = ${wavelength.toFixed(2)} m.`,
+               b: `Frequency = v/λ = ${v}/${wavelength.toFixed(2)} ≈ ${frequency.toFixed(2)} Hz.`,
+               c: `Period = 1/frequency ≈ ${period.toFixed(4)} s.`
+            }
           };
         }
       },
@@ -815,9 +930,35 @@
         alternatives: {},
         model: "A wavefront is a line joining points on a wave that are in the same phase."
       },
-      
-      // --- Topic 8: Superposition ---
-      // Equation questions for Topic 8 (4)
+      // Additional Hard Multi-Part Question for Topic 7 (for intermediate steps)
+      {
+        topic: 7,
+        type: "equation",
+        difficulty: "Hard",
+        multi: true,
+        question: function() {
+          // This question asks for verification of intermediate steps.
+          const L = 2; // m (pipe closed at one end)
+          const v = 305; // m/s
+          const f = v / (4 * L);  // For a pipe closed at one end, fundamental frequency: f = v/(4L)
+          const T = 1 / f;
+          return {
+            multi: true,
+            text: `A pipe closed at one end has a length of ${L} m and a sound speed of ${v} m/s.
+(a) Calculate the fundamental frequency.
+(b) Calculate the time period.
+(c) Verify that frequency and period are reciprocals.`,
+            answers: { a: f.toFixed(1), b: T.toFixed(3), c: (f * T).toFixed(2) },
+            model: {
+               a: `f = v/(4L) = ${v}/(4×${L}) = ${f.toFixed(1)} Hz.`,
+               b: `T = 1/f = 1/${f.toFixed(1)} = ${T.toFixed(3)} s.`,
+               c: `f×T = ${f.toFixed(1)}×${T.toFixed(3)} ≈ ${(f * T).toFixed(2)} (should equal 1).`
+            }
+          };
+        }
+      },
+
+      // ------------------------- Topic 8: Superposition -------------------------
       {
         topic: 8,
         type: "equation",
@@ -846,63 +987,30 @@
           };
         }
       },
+      // Additional Hard Multi-Part Question for Topic 8
       {
         topic: 8,
         type: "equation",
+        difficulty: "Hard",
+        multi: true,
         question: function() {
-          const A1 = Math.floor(Math.random() * 5 + 5);
-          const A2 = Math.floor(Math.random() * 5 + 5);
-          const phi = Math.floor(Math.random() * 90 + 10);
-          const A = Math.sqrt(A1*A1 + A2*A2 + 2*A1*A2*Math.cos(phi*Math.PI/180));
+          const A1 = 4; // units
+          const A2 = 4; // units
+          const phaseDiff = 45; // degrees
+          const resultant = Math.sqrt(A1*A1 + A2*A2 + 2*A1*A2*Math.cos(phaseDiff * Math.PI/180));
           return {
-            text: `Two waves of amplitudes ${A1} and ${A2} combine with a phase difference of ${phi}°. Calculate the resultant amplitude.`,
-            answer: A.toFixed(1),
-            model: `Resultant amplitude = √(${A1}² + ${A2}² + 2×${A1}×${A2}×cos(${phi}°)) = ${A.toFixed(1)}.`
+            text: `Two coherent waves, each with an amplitude of ${A1} units, interfere with a phase difference of ${phaseDiff}°. Calculate: (a) the resultant amplitude, (b) the cosine of the phase difference, and (c) verify the resultant amplitude using the formula.`,
+            answers: { a: resultant.toFixed(2), b: Math.cos(phaseDiff * Math.PI/180).toFixed(2), c: resultant.toFixed(2) },
+            model: {
+               a: `Resultant amplitude = √(A₁² + A₂² + 2A₁A₂cosφ) = √(4² + 4² + 2×4×4×cos(45°)) ≈ ${resultant.toFixed(2)} units.`,
+               b: `cos(45°) ≈ ${Math.cos(phaseDiff * Math.PI/180).toFixed(2)}.`,
+               c: `Verification: using the same formula, we get ≈ ${resultant.toFixed(2)} units.`
+            }
           };
         }
       },
-      {
-        topic: 8,
-        type: "equation",
-        question: function() {
-          const A = Math.floor(Math.random() * 5 + 5);
-          const phaseDiff = Math.floor(Math.random() * 90 + 10);
-          const resultAmp = 2 * A * Math.cos((phaseDiff/2) * Math.PI/180);
-          return {
-            text: `Two identical waves each of amplitude ${A} combine with a phase difference of ${phaseDiff}°. Calculate the resultant amplitude using 2A cos(φ/2).`,
-            answer: resultAmp.toFixed(1),
-            model: `Resultant amplitude = 2×${A}×cos(${phaseDiff}/2) = ${resultAmp.toFixed(1)}.`
-          };
-        }
-      },
-      // Definition questions for Topic 8
-      {
-        topic: 8,
-        type: "definition",
-        question: "State the principle of superposition.",
-        keywords: ["resultant", "sum", "individual displacements"],
-        alternatives: {},
-        model: "When two or more waves overlap, the resultant displacement is the sum of the individual displacements."
-      },
-      {
-        topic: 8,
-        type: "definition",
-        question: "Define constructive interference.",
-        keywords: ["waves", "same phase", "reinforce"],
-        alternatives: {},
-        model: "Constructive interference occurs when waves meet in phase and their amplitudes add together."
-      },
-      {
-        topic: 8,
-        type: "definition",
-        question: "Define destructive interference.",
-        keywords: ["waves", "opposite phase", "cancel"],
-        alternatives: {},
-        model: "Destructive interference occurs when waves meet out of phase and cancel each other out."
-      },
-      
-      // --- Topic 9: Electricity ---
-      // Equation questions for Topic 9 (5)
+
+      // ------------------------- Topic 9: Electricity -------------------------
       {
         topic: 9,
         type: "equation",
@@ -921,27 +1029,11 @@
         topic: 9,
         type: "equation",
         question: function() {
-          const V1 = Math.floor(Math.random() * 10 + 10);
-          const V2 = Math.floor(Math.random() * 5 + 5);
-          const R = Math.floor(Math.random() * 20 + 10);
-          const I = Math.floor(Math.random() * 3 + 1);
-          const Vr = I * R;
-          return {
-            text: `In a loop with batteries of ${V1} V and ${V2} V and a resistor of ${R} Ω carrying ${I} A, calculate the voltage drop across the resistor.`,
-            answer: Vr.toFixed(1),
-            model: `Voltage drop Vr = I×R = ${I}×${R} = ${Vr.toFixed(1)} V.`
-          };
-        }
-      },
-      {
-        topic: 9,
-        type: "equation",
-        question: function() {
           const V = Math.floor(Math.random() * 20 + 10);
           const I = Math.floor(Math.random() * 5 + 1);
           const P = V * I;
           return {
-            text: `Calculate the power of a circuit with voltage ${V} V and current ${I} A.`,
+            text: `Calculate the power of a circuit with a voltage of ${V} V and a current of ${I} A.`,
             answer: P.toFixed(1),
             model: `P = V×I = ${V}×${I} = ${P.toFixed(1)} W.`
           };
@@ -988,9 +1080,33 @@
         alternatives: {},
         model: "Electric potential difference is the work done per unit charge to move a charge between two points."
       },
-      
-      // --- Topic 10: D.C. circuits ---
-      // Equation questions for Topic 10 (5)
+      // Additional Hard Multi-Part Question for Topic 9
+      {
+        topic: 9,
+        type: "equation",
+        difficulty: "Hard",
+        multi: true,
+        question: function() {
+          const R = 10; // Ω
+          const Vin = 12; // V
+          const I1 = Vin / R; // 1.2 A
+          const P1 = I1 * I1 * R; // ≈ 14.4 W
+          const R_series = 10; // Ω
+          const newTotal = R + R_series; // 20 Ω
+          const I2 = Vin / newTotal; // 0.6 A
+          return {
+            text: `A resistor of ${R} Ω is connected to a battery of ${Vin} V. Calculate: (a) the current through the resistor, (b) the power dissipated in the resistor, and (c) if a second resistor of ${R_series} Ω is added in series, the new current through the circuit.`,
+            answers: { a: I1.toFixed(2), b: P1.toFixed(1), c: I2.toFixed(2) },
+            model: {
+               a: `I = V/R = ${Vin}/${R} = ${I1.toFixed(2)} A.`,
+               b: `Power = I²×R = (${I1.toFixed(2)})²×${R} ≈ ${P1.toFixed(1)} W.`,
+               c: `New total resistance = ${R} + ${R_series} = ${newTotal} Ω, so I = ${Vin}/${newTotal} ≈ ${I2.toFixed(2)} A.`
+            }
+          };
+        }
+      },
+
+      // ------------------------- Topic 10: D.C. circuits -------------------------
       {
         topic: 10,
         type: "equation",
@@ -1066,9 +1182,27 @@
         alternatives: {},
         model: "Internal resistance is the resistance within a power source that causes a drop in the terminal voltage."
       },
-      
-      // --- Topic 11: Particle and nuclear physics ---
-      // Equation questions for Topic 11 (5)
+      // Additional Hard Multi-Part Question for Topic 10
+      {
+        topic: 10,
+        type: "equation",
+        difficulty: "Hard",
+        multi: true,
+        question: function() {
+          const R1 = 100, R2 = 200, R3 = 300, Vin = 12;
+          const R_total = R1 + R2 + R3;
+          const current = Vin / R_total;
+          const V_R2 = current * R2;
+          const power_R2 = V_R2 * V_R2 / R2;
+          return {
+            text: `In a voltage divider circuit, three resistors of ${R1} Ω, ${R2} Ω, and ${R3} Ω are connected in series with an input voltage of ${Vin} V. Calculate: (a) the voltage across the ${R2} Ω resistor and (b) the power dissipated in it.`,
+            answers: { a: V_R2.toFixed(2) + " V", b: power_R2.toFixed(2) + " W" },
+            model: `Total resistance = ${R_total} Ω; Current = Vin/Total = ${Vin}/${R_total} ≈ ${current.toFixed(2)} A; Voltage across R2 = current × R2 ≈ ${V_R2.toFixed(2)} V; Power = (Voltage across R2)²/R2 ≈ ${power_R2.toFixed(2)} W.`
+          };
+        }
+      },
+
+      // ------------------------- Topic 11: Particle and nuclear physics -------------------------
       {
         topic: 11,
         type: "equation",
@@ -1104,18 +1238,6 @@
             text: `A nucleus with a mass number of ${initialMass} undergoes alpha decay. What is its new mass number?`,
             answer: finalMass.toString(),
             model: `Alpha decay reduces mass number by 4: ${initialMass} - 4 = ${finalMass}.`
-          };
-        }
-      },
-      {
-        topic: 11,
-        type: "equation",
-        question: function() {
-          const Q = Math.floor(Math.random() * 10 + 5);
-          return {
-            text: `In an alpha decay, if the Q-value is ${Q} MeV, what is the kinetic energy of the emitted alpha particle (in MeV)?`,
-            answer: Q.toString(),
-            model: `The kinetic energy equals the Q-value, so it is ${Q} MeV.`
           };
         }
       },
@@ -1252,6 +1374,21 @@
         keywords: ["1/12", "carbon-12"],
         alternatives: {},
         model: "One unified atomic mass unit is 1/12 the mass of a carbon-12 atom."
+      },
+      // Additional Hard Multi-Part Question for Topic 11
+      {
+        topic: 11,
+        type: "equation",
+        difficulty: "Hard",
+        multi: true,
+        question: function() {
+          // Example: A nucleus undergoes beta-minus decay then alpha decay.
+          return {
+            text: `A nucleus with a mass number of 210 and an atomic number of 84 undergoes beta-minus decay followed by alpha decay. Calculate the final mass number and atomic number.`,
+            answers: { a: "206", b: "83" },
+            model: `Beta-minus decay: mass number remains 210, atomic number increases to 85. Then alpha decay: mass number = 210 - 4 = 206 and atomic number = 85 - 2 = 83.`
+          };
+        }
       }
     ];
     
@@ -1333,17 +1470,106 @@
       document.getElementById("feedback").innerHTML = feedback + `<br><em>Model Answer:</em><br>a) ${q.model.a}<br>b) ${q.model.b}<br>c) ${q.model.c}`;
     }
     
+    // Updated robust checkDefinition function for definitions
     function checkDefinition() {
       const q = currentQuestion;
       const input = document.getElementById("student-answer").value.toLowerCase();
-      let result = "";
-      if (q.type === "equation") {
-        const expected = q.answer.split(',').map(s => s.trim());
-        const provided = input.split(',').map(s => s.trim());
-        const isCorrect = expected.every((val, i) => Math.abs(parseFloat(val) - parseFloat(provided[i])) < 0.1);
-        result = isCorrect ? "✅ Correct!" : `✘ Not quite. Correct answer: ${q.answer}`;
-        if (isCorrect) score++;
+      let isCorrect = true;
+      
+      // General keyword check
+      q.keywords.forEach(keyword => {
+        const synonyms = q.alternatives[keyword] || [keyword];
+        const keywordMatched = synonyms.some(word => input.includes(word));
+        if (!keywordMatched) {
+          isCorrect = false;
+        }
+      });
+      
+      // Robust relationship checks based on specific definitions
+      const lowerQ = q.question.toLowerCase();
+      
+      if (lowerQ.includes("pressure")) {
+        const requiredPhrases = ["per unit area", "per area", "divided by area"];
+        const forbiddenPhrases = ["times area", "multiplied by area"];
+        if (!requiredPhrases.some(phrase => input.includes(phrase))) {
+          isCorrect = false;
+        }
+        if (forbiddenPhrases.some(phrase => input.includes(phrase))) {
+          isCorrect = false;
+        }
+        if (!input.includes("force")) { isCorrect = false; }
       }
+      
+      if (lowerQ.includes("density")) {
+        const requiredPhrases = ["per unit volume", "per volume", "divided by volume"];
+        const forbiddenPhrases = ["times volume", "multiplied by volume"];
+        if (!requiredPhrases.some(phrase => input.includes(phrase))) {
+          isCorrect = false;
+        }
+        if (forbiddenPhrases.some(phrase => input.includes(phrase))) {
+          isCorrect = false;
+        }
+        if (!input.includes("mass")) { isCorrect = false; }
+      }
+      
+      if (lowerQ.includes("stress")) {
+        const requiredPhrases = ["per unit cross-sectional area", "per cross-sectional area", "divided by cross-sectional area"];
+        const forbiddenPhrases = ["times cross-sectional area", "multiplied by cross-sectional area"];
+        if (!requiredPhrases.some(phrase => input.includes(phrase))) {
+          isCorrect = false;
+        }
+        if (forbiddenPhrases.some(phrase => input.includes(phrase))) {
+          isCorrect = false;
+        }
+        if (!input.includes("force")) { isCorrect = false; }
+      }
+      
+      if (lowerQ.includes("strain")) {
+        const requiredPhrases = ["divided by", "over", "ratio"];
+        const forbiddenPhrases = ["times", "multiplied by"];
+        if (!requiredPhrases.some(phrase => input.includes(phrase))) {
+          isCorrect = false;
+        }
+        if (forbiddenPhrases.some(phrase => input.includes(phrase))) {
+          isCorrect = false;
+        }
+      }
+      
+      if (lowerQ.includes("electromotive force") || lowerQ.includes("electric potential difference")) {
+        const requiredPhrases = ["per unit charge", "divided by charge", "per charge"];
+        const forbiddenPhrases = ["times charge", "multiplied by charge"];
+        if (!requiredPhrases.some(phrase => input.includes(phrase))) {
+          isCorrect = false;
+        }
+        if (forbiddenPhrases.some(phrase => input.includes(phrase))) {
+          isCorrect = false;
+        }
+      }
+      
+      if (lowerQ.includes("resistance")) {
+        const requiredPhrases = ["ratio", "divided by", "over"];
+        const forbiddenPhrases = ["times"];
+        if (!requiredPhrases.some(phrase => input.includes(phrase))) {
+          isCorrect = false;
+        }
+        if (forbiddenPhrases.some(phrase => input.includes(phrase))) {
+          isCorrect = false;
+        }
+      }
+      
+      if (lowerQ.includes("combine uncertainties")) {
+        const requiredPhrases = ["add", "sum"];
+        const forbiddenPhrases = ["multiply", "product"];
+        if (!requiredPhrases.some(phrase => input.includes(phrase))) {
+          isCorrect = false;
+        }
+        if (forbiddenPhrases.some(phrase => input.includes(phrase))) {
+          isCorrect = false;
+        }
+      }
+      
+      let result = isCorrect ? "✅ Correct!" : "✘ Not quite correct.";
+      if (isCorrect) score++;
       result += `<br><em>Model Answer:</em> ${q.model}`;
       document.getElementById("score").innerText = score;
       document.getElementById("feedback").innerHTML = result;
