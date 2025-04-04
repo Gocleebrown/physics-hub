@@ -83,8 +83,7 @@
       all.forEach(box => box.checked = isChecked);
     }
 
-    // Combined question bank including definitions and equation questions.
-    // (Definitions include those we worked on previously.)
+    // The complete question bank including all definitions from our previous chat.
     const questionBank = [
       // ------------------------- Topic 1: Physical quantities and units -------------------------
       {
@@ -139,7 +138,7 @@
           };
         }
       },
-      // Definitions for Topic 1 (restoring our previous definitions)
+      // Definitions for Topic 1
       {
         topic: 1,
         type: "definition",
@@ -489,7 +488,7 @@
           };
         }
       },
-      // New Collision Question: Two-dimensional collision with vector momentum conservation.
+      // New Two-Dimensional Collision Question (with vector components)
       {
         topic: 3,
         type: "equation",
@@ -498,18 +497,20 @@
         question: function() {
           // A 2 kg ball moving horizontally at 5 m/s collides elastically with a 3 kg ball at rest.
           // After collision, the 2 kg ball moves at 3 m/s at 30° above horizontal.
-          const m1 = 2; // kg
-          const m2 = 3; // kg
-          const v1i = 5; // m/s, horizontal
-          const v2i = 0;
+          const m1 = 2, m2 = 3;
+          const v1i = 5; // m/s horizontally
           const v1f = 3; // m/s after collision
           const theta1 = 30; // degrees above horizontal
           // Components for m1 after collision:
-          const v1fx = m1 * v1f * Math.cos(theta1 * Math.PI/180);
-          const v1fy = m1 * v1f * Math.sin(theta1 * Math.PI/180);
+          const v1fx = v1f * Math.cos(theta1 * Math.PI/180);
+          const v1fy = v1f * Math.sin(theta1 * Math.PI/180);
+          // Momentum conservation in x-direction:
           const p_initial_x = m1 * v1i;
-          const v2fx = (p_initial_x - v1fx) / m2;
-          const v2fy = - (m1 * v1f * Math.sin(theta1 * Math.PI/180)) / m2;
+          const p1x = m1 * v1fx;
+          const v2fx = (p_initial_x - p1x) / m2;
+          // Momentum conservation in y-direction:
+          // Initially zero, so m1*v1fy + m2*v2fy = 0  => v2fy = - (m1*v1fy)/m2
+          const v2fy = - (m1 * v1fy) / m2;
           const v2f = Math.sqrt(v2fx*v2fx + v2fy*v2fy);
           const theta2 = Math.atan2(v2fy, v2fx) * (180/Math.PI);
           return {
@@ -517,8 +518,8 @@
             text: `A 2 kg ball moving horizontally at 5 m/s collides elastically with a 3 kg ball initially at rest. After the collision, the 2 kg ball moves at 3 m/s at 30° above the horizontal. Calculate: (a) the speed of the 3 kg ball, and (b) the angle (relative to the horizontal) at which it moves.`,
             answers: { a: v2f.toFixed(2), b: theta2.toFixed(2) },
             model: {
-               a: `Conservation in x: 2×5 = 2×3×cos30° + 3×v₂ₓ, so v₂ₓ = (10 - 2×3×cos30°)/3 ≈ ${v2fx.toFixed(2)} m/s. Conservation in y: 0 = 2×3×sin30° + 3×v₂ᵧ, so v₂ᵧ = - (2×3×sin30°)/3 ≈ ${v2fy.toFixed(2)} m/s. Thus, v₂ = √(v₂ₓ²+v₂ᵧ²) ≈ ${v2f.toFixed(2)} m/s.`,
-               b: `Angle = arctan(v₂ᵧ/v₂ₓ) ≈ ${theta2.toFixed(2)}° (below horizontal).`
+               a: `x-component: v₂ₓ = ( (2×5) - (2×3×cos30°) ) / 3 ≈ ${v2fx.toFixed(2)} m/s; y-component: v₂ᵧ = - (2×3×sin30°)/3 ≈ ${v2fy.toFixed(2)} m/s; Speed = √(v₂ₓ² + v₂ᵧ²) ≈ ${v2f.toFixed(2)} m/s.`,
+               b: `Angle = arctan(v₂ᵧ/v₂ₓ) ≈ ${theta2.toFixed(2)}° (negative indicates below horizontal).`
             }
           };
         }
@@ -917,7 +918,7 @@
         alternatives: {},
         model: "A wavefront is a line joining points on a wave that are in the same phase."
       },
-      // Additional Hard Multi-Part Question for Topic 7 (with intermediate steps)
+      // Additional Hard Multi-Part Question for Topic 7
       {
         topic: 7,
         type: "equation",
@@ -926,7 +927,7 @@
         question: function() {
           const L = 2; // m (pipe closed at one end)
           const v = 305; // m/s
-          const f = v / (4 * L);  // For a pipe closed at one end, f = v/(4L)
+          const f = v / (4 * L);  // f = v/(4L)
           const T = 1 / f;
           return {
             multi: true,
@@ -1391,21 +1392,23 @@
     }
     
     function askNewQuestion() {
-      const ids = [...document.querySelectorAll("input[type='checkbox']")]
-                     .filter(cb => cb.checked)
-                     .map(cb => cb.id);
+      // Update: For questions that are definitions (q.question is a string), also set q.text = q.question.
       const filtered = questionBank.map(q => {
         if (typeof q.question === 'function') {
           const built = q.question();
           return { ...q, text: built.text, model: built.model, answer: built.answer, answers: built.answers, image: built.image || null, multi: built.multi || false };
+        } else {
+          return { ...q, text: q.question }; // Set text for definitions.
         }
-        return q;
       }).filter(q => {
-        return ids.some(id => {
-          const topicMatch = id.includes(`topic${q.topic}`) || id.startsWith("whole");
-          const typeMatch = (id.endsWith("defs") && q.type === "definition") || (id.endsWith("eqs") && q.type === "equation");
-          return topicMatch && typeMatch;
-        });
+        return [...document.querySelectorAll("input[type='checkbox']")]
+          .filter(cb => cb.checked)
+          .map(cb => cb.id)
+          .some(id => {
+            const topicMatch = id.includes(`topic${q.topic}`) || id.startsWith("whole");
+            const typeMatch = (id.endsWith("defs") && q.type === "definition") || (id.endsWith("eqs") && q.type === "equation");
+            return topicMatch && typeMatch;
+          });
       });
       
       if (filtered.length === 0) {
