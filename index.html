@@ -1516,7 +1516,270 @@
           };
         }
       },
-      
+
+     // --- Topic 8: superposition ---
+    const additionalQuestionsTopic8 = [
+        {
+    topic: 8,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q1: Constructive interference.
+      let A = Math.floor(Math.random() * 5 + 3); // Amplitude A between 3 and 7
+      let B = Math.floor(Math.random() * 5 + 2); // Amplitude B between 2 and 6
+      let resultant = A + B;
+      return {
+        text: Two waves interfere constructively. If one wave has an amplitude of ${A} units and the other ${B} units, what is the resultant amplitude?, 
+        answer: resultant.toString(),
+        modelAnswer: In constructive interference, the amplitudes simply add together. Therefore, the resultant amplitude is ${A} + ${B} = ${resultant} units.
+      };
+    }
+  },
+   {
+    topic: 8,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q2: Destructive interference.
+      let A = Math.floor(Math.random() * 5 + 3);
+      let B = Math.floor(Math.random() * 5 + 2);
+      let resultant = Math.abs(A - B);
+      return {
+        text: Two waves interfere destructively. If one wave has an amplitude of ${A} units and the other ${B} units, what is the resultant amplitude?, 
+        answer: resultant.toString(),
+        modelAnswer: In destructive interference, the waves partially cancel out. The resultant amplitude is the absolute difference: |${A} - ${B}| = ${resultant} units.
+      };
+    }
+  },
+      const additionalQuestionsTopic8 = [
+  {
+    topic: 8,
+    difficulty: "easy",
+    type: "definition",
+    question: "State the principle of superposition.",
+    modelAnswer: "The principle of superposition states that when waves overlap, the resultant displacement is the sum of the individual displacements.",
+    keywords: [["sum", "total"], ["displacement", "overlap"]]
+  },
+  {
+    topic: 8,
+    difficulty: "easy",
+    type: "definition",
+    question: "Define constructive interference.",
+    modelAnswer: "Constructive interference occurs when waves in phase add together, increasing the overall amplitude.",
+    keywords: [["in phase"], ["add", "reinforce", "increase"]]
+  },
+  {
+    topic: 8,
+    difficulty: "easy",
+    type: "definition",
+    question: "Define destructive interference.",
+    modelAnswer: "Destructive interference occurs when waves are out of phase, causing them to cancel each other out.",
+    keywords: [["out of phase"], ["cancel", "reduce"]]
+  }
+];
+
+  // --- Topic 9: Electricity ---
+   const additionalQuestionsTopic9 = [
+  {
+    topic: 9,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      const I = Math.floor(Math.random() * 5 + 1),
+            R = Math.floor(Math.random() * 20 + 10),
+            V = I * R;
+      return {
+        text: `A current of ${I} A flows through a resistor of ${R} Ω. Calculate the voltage across it and explain how Ohm's law is used.`,
+        answer: V.toFixed(1),
+        modelAnswer: `Using Ohm's law (V = I×R), we have V = ${I} × ${R} ≈ ${V.toFixed(1)} V.`
+      };
+    }
+  },
+  {
+    topic: 9,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      const V = Math.floor(Math.random() * 20 + 10),
+            I = Math.floor(Math.random() * 5 + 1),
+            P = V * I;
+      return {
+        text: `For a circuit with a voltage of ${V} V and a current of ${I} A, calculate the power and describe the calculation process.`,
+        answer: P.toFixed(1),
+        modelAnswer: `Power is calculated using P = V × I. Therefore, P = ${V} × ${I} ≈ ${P.toFixed(1)} W.`
+      };
+    }
+  },
+  {
+    topic: 9,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      const R1 = Math.floor(Math.random() * 20 + 10),
+            R2 = Math.floor(Math.random() * 20 + 10),
+            R3 = Math.floor(Math.random() * 20 + 10),
+            Rp = 1 / (1 / R1 + 1 / R2),
+            R_total = Rp + R3;
+      return {
+        text: `Calculate the total resistance of two resistors (${R1} Ω and ${R2} Ω) in parallel, in series with a ${R3} Ω resistor.`,
+        answer: R_total.toFixed(1),
+        modelAnswer: `For the parallel pair: R_parallel = 1/(1/${R1} + 1/${R2}) ≈ ${Rp.toFixed(1)} Ω. Then, R_total = R_parallel + ${R3} = ${Rp.toFixed(1)} + ${R3} ≈ ${R_total.toFixed(1)} Ω.`
+      };
+    }
+  },
+  {
+    topic: 9,
+    difficulty: "easy",
+    type: "definition",
+    question: "Define electric current.",
+    modelAnswer: "Electric current is the rate at which electric charge flows through a conductor.",
+    keywords: [["rate", "flow"], ["charge"]]
+  },
+  {
+    topic: 9,
+    difficulty: "easy",
+    type: "definition",
+    question: "Define electromotive force (e.m.f.).",
+    modelAnswer: "Electromotive force (e.m.f.) is the energy provided per unit charge by a source, measured in volts.",
+    keywords: [["work done"], ["per unit charge"]]
+  },
+  {
+    topic: 9,
+    difficulty: "easy",
+    type: "definition",
+    question: "Define electric potential difference.",
+    modelAnswer: "Electric potential difference is the work required per unit charge to move a charge between two points.",
+    keywords: [["work", "work done"], ["per unit charge"], ["between two points"]]
+  },
+  {
+    topic: 9,
+    difficulty: "hard",
+    type: "numeric_multi",
+    question: function() {
+      const R = 10, 
+            Vin = 12, 
+            I1 = Vin / R, 
+            P1 = I1 * I1 * R,
+            R_series = 10, 
+            newTotal = R + R_series, 
+            I2 = Vin / newTotal;
+      return {
+        text: `A resistor of ${R} Ω is connected to a ${Vin} V battery. Calculate: (a) the current, (b) the power, and (c) the new current if a ${R_series} Ω resistor is added in series.`,
+        answer: [I1.toFixed(2) + " A", P1.toFixed(1) + " W", I2.toFixed(2) + " A"],
+        modelAnswer: [
+          `Current I = V / R = ${Vin} / ${R} = ${I1.toFixed(2)} A.`,
+          `Power P = I² × R = (${I1.toFixed(2)})² × ${R} ≈ ${P1.toFixed(1)} W.`,
+          `With an additional resistor of ${R_series} Ω, new current I = ${Vin} / (${R} + ${R_series}) = ${I2.toFixed(2)} A.`
+        ]
+      };
+    }
+  }
+];
+        // --- Topic 10: DC ---
+   const additionalQuestionsTopic10 = [
+  {
+    topic: 10,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      const R1 = Math.floor(Math.random() * 50 + 50),
+            R2 = Math.floor(Math.random() * 50 + 50),
+            Vin = Math.floor(Math.random() * 20 + 10),
+            Vout = Vin * (R2 / (R1 + R2));
+      return {
+        text: `In a voltage divider with resistors of ${R1} Ω and ${R2} Ω and an input voltage of ${Vin} V, find the voltage across the ${R2} Ω resistor.`,
+        answer: Vout.toFixed(1),
+        modelAnswer: `Using the voltage divider rule: V_out = Vin × (R2 / (R1 + R2)). Thus, V_out ≈ ${Vout.toFixed(1)} V.`
+      };
+    }
+  },
+  {
+    topic: 10,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      const Vin = Math.floor(Math.random() * 20 + 10),
+            R_total = Math.floor(Math.random() * 100 + 100),
+            I = Vin / R_total;
+      return {
+        text: `Find the current in a series circuit with a total resistance of ${R_total} Ω and a supply voltage of ${Vin} V.`,
+        answer: I.toFixed(2),
+        modelAnswer: `Using Ohm's law, I = V / R. With V = ${Vin} V and R = ${R_total} Ω, I ≈ ${I.toFixed(2)} A.`
+      };
+    }
+  },
+  {
+    topic: 10,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      const I = Math.floor(Math.random() * 5 + 1),
+            R = Math.floor(Math.random() * 100 + 50),
+            P = I * I * R;
+      return {
+        text: `Calculate the power dissipated in a ${R} Ω resistor with a current of ${I} A.`,
+        answer: P.toFixed(1),
+        modelAnswer: `Power is given by P = I² × R. So, P = ${I}² × ${R} ≈ ${P.toFixed(1)} W.`
+      };
+    }
+  },
+  {
+    topic: 10,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      const R1 = Math.floor(Math.random() * 50 + 50),
+            R2 = Math.floor(Math.random() * 50 + 50),
+            R3 = Math.floor(Math.random() * 50 + 50),
+            R_total = R1 + R2 + R3;
+      return {
+        text: `Three resistors of ${R1} Ω, ${R2} Ω, and ${R3} Ω are connected in series. Find the total resistance.`,
+        answer: R_total.toFixed(1),
+        modelAnswer: `In a series circuit, resistances add: R_total = ${R1} + ${R2} + ${R3} = ${R_total} Ω.`
+      };
+    }
+  },
+  {
+    topic: 10,
+    difficulty: "hard",
+    type: "numeric_multi",
+    question: function() {
+      const R1 = 100,
+            R2 = 200,
+            R3 = 300,
+            Vin = 12,
+            R_total = R1 + R2 + R3,
+            I = Vin / R_total,
+            V_R2 = I * R2,
+            power_R2 = (V_R2 * V_R2) / R2;
+      return {
+        text: `In a voltage divider circuit with resistors ${R1} Ω, ${R2} Ω, and ${R3} Ω connected in series and an input voltage of ${Vin} V, calculate: (a) the voltage across the ${R2} Ω resistor, and (b) the power dissipated in it.`,
+        answer: [V_R2.toFixed(2) + " V", power_R2.toFixed(2) + " W"],
+        modelAnswer: [
+          `Voltage across ${R2} Ω, V_R2 = Vin × (R2 / (R1 + R2 + R3)) ≈ ${V_R2.toFixed(2)} V.`,
+          `Power dissipated in ${R2} Ω = V_R2² / R2 ≈ ${power_R2.toFixed(2)} W.`
+        ]
+      };
+    }
+  },
+  {
+    topic: 10,
+    difficulty: "easy",
+    type: "definition",
+    question: "Define resistance.",
+    modelAnswer: "Resistance is defined as the ratio of the voltage across a conductor to the current flowing through it.",
+    keywords: [["voltage"], ["current"], ["ratio"]]
+  },
+  {
+    topic: 10,
+    difficulty: "easy",
+    type: "definition",
+    question: "Define internal resistance.",
+    modelAnswer: "Internal resistance is the resistance within a power source that causes a drop in the terminal voltage.",
+    keywords: [["internal"], ["power source"], ["resistance"]]
+  }
+];
+
       // --- Topic 11: Particle and nuclear physics ---
       const additionalQuestionsTopic11 = [
   {
