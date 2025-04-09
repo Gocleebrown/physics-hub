@@ -162,7 +162,88 @@
     ----------------------------- */
     const questionBank = [
       // --- Topic 1: Physical quantities and units ---
-      {
+    const additionalQuestionsTopic1 = [
+  {
+    topic: 1,
+    difficulty: "easy",
+    type: "numeric_multi",
+    question: function() {
+      // Q1: Race conversion
+      let km = (Math.random() * 10 + 5).toFixed(1); // 5.0 to 15.0 km
+      let m = (km * 1000).toFixed(0);
+      let cm = (km * 100000).toFixed(0);
+      return {
+        text: `A runner completes a race of ${km} km. Express this distance in both meters and centimeters. Explain your conversion process.`,
+        answer: [m + " m", cm + " cm"],
+        modelAnswer: [
+          `Since 1 km = 1000 m, ${km} km equals ${m} m.`,
+          `Also, 1 km = 100,000 cm, so ${km} km equals ${cm} cm.`
+        ]
+      };
+    }
+  },
+  {
+    topic: 1,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q2: Force conversion: Newtons to dynes
+      let F = (Math.random() * 900 + 100).toFixed(0); // 100 to 1000 N
+      let dynes = (F * 1e5).toFixed(0);
+      return {
+        text: `Convert a force of ${F} N into dynes. Explain the conversion factor used.`,
+        answer: dynes + " dynes",
+        modelAnswer: `1 N = 10^5 dynes, so ${F} N is equal to ${dynes} dynes.`
+      };
+    }
+  },
+  {
+    topic: 1,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q3: Density conversion from kg/m³ to g/cm³.
+      let densitySI = (Math.random() * 1000 + 500).toFixed(0); // 500 to 1500 kg/m³
+      let densityCGS = (densitySI / 1000).toFixed(3); // 1 kg/m³ = 0.001 g/cm³
+      return {
+        text: `A substance has a density of ${densitySI} kg/m³. Convert this density to g/cm³. Explain the conversion.`,
+        answer: densityCGS + " g/cm³",
+        modelAnswer: `Since 1 kg/m³ = 0.001 g/cm³, multiplying ${densitySI} by 0.001 gives ${densityCGS} g/cm³.`
+      };
+    }
+  },
+  {
+    topic: 1,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q4: Percentage uncertainty of a measurement.
+      let V = (Math.random() * 450 + 50).toFixed(0); // Value between 50 and 500
+      let dV = (V * (Math.random() * 0.1 + 0.01)).toFixed(1); // uncertainty 1% to 10%
+      let percent = ((dV / V) * 100).toFixed(1);
+      return {
+        text: `A measurement yields a value of ${V} with an absolute uncertainty of ${dV}. Calculate the percentage uncertainty. Explain the calculation.`,
+        answer: percent + " %",
+        modelAnswer: `Percentage uncertainty = (ΔV / V) × 100 = (${dV} / ${V}) × 100 ≈ ${percent} %.`
+      };
+    }
+  },
+  {
+    topic: 1,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q5: Temperature conversion from °C to K.
+      let C = (Math.random() * 60 - 20).toFixed(1); // Temperature between -20°C and 40°C
+      let K = (parseFloat(C) + 273.15).toFixed(2);
+      return {
+        text: `Convert a temperature of ${C} °C to Kelvin. Explain the conversion formula.`,
+        answer: K + " K",
+        modelAnswer: `To convert Celsius to Kelvin, add 273.15. Thus, ${C} °C becomes ${K} K.`
+      };
+    }
+  }
+  {
         topic: 1, difficulty: "easy", type: "equation",
         question: function() {
           const km = 3.2, m = km * 1000;
@@ -289,6 +370,101 @@
           };
         }
       },
+    const additionalQuestionsTopic2 = [
+  {
+    topic: 2,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q1: Maximum height and time for vertical launch.
+      let u = (Math.random() * 10 + 10).toFixed(1); // 10 to 20 m/s
+      let g = 9.81;
+      let t_max = (u / g).toFixed(2);
+      let h_max = (0.5 * u * u / g).toFixed(2);
+      return {
+        text: `A ball is thrown vertically upwards with an initial speed of ${u} m/s. Calculate: (a) the time to reach maximum height, and (b) the maximum height. Explain your reasoning.`,
+        answer: [t_max + " s", h_max + " m"],
+        modelAnswer: [
+          `Time to reach maximum height is t = u / g = ${u} / 9.81 ≈ ${t_max} s.`,
+          `Maximum height is h = 0.5 * u² / g = 0.5 * ${u}² / 9.81 ≈ ${h_max} m.`
+        ]
+      };
+    }
+  },
+  {
+    topic: 2,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q2: Free fall time.
+      let h = (Math.random() * 20 + 10).toFixed(1); // height between 10 and 30 m
+      let g = 9.81;
+      let t = (Math.sqrt(2 * h / g)).toFixed(2);
+      return {
+        text: `An object is dropped from a height of ${h} m. Calculate the time it takes to reach the ground. Provide your explanation.`,
+        answer: t + " s",
+        modelAnswer: `Using h = 0.5*g*t², solve for t: t = √(2h/g) = √(2×${h}/9.81) ≈ ${t} s.`
+      };
+    }
+  },
+  {
+    topic: 2,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q3: Horizontal projectile motion.
+      let h = (Math.random() * 15 + 5).toFixed(1); // 5 to 20 m
+      let g = 9.81;
+      let t = Math.sqrt(2 * h / g);
+      let u = (Math.random() * 10 + 5).toFixed(1); // 5 to 15 m/s
+      let d = (u * t).toFixed(2);
+      return {
+        text: `An object is launched horizontally from a cliff of height ${h} m at a speed of ${u} m/s. Calculate (a) the time to hit the ground, and (b) the horizontal distance traveled. Explain the principles involved.`,
+        answer: [t.toFixed(2) + " s", d + " m"],
+        modelAnswer: [
+          `Time to fall: t = √(2h/g) = √(2×${h}/9.81) ≈ ${t.toFixed(2)} s.`,
+          `Horizontal distance: d = u × t = ${u} × ${t.toFixed(2)} ≈ ${d} m.`
+        ]
+      };
+    }
+  },
+  {
+    topic: 2,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q4: Deceleration to a stop.
+      let u = (Math.random() * 20 + 20).toFixed(1); // 20 to 40 m/s
+      let t = (Math.random() * 3 + 2).toFixed(1); // 2 to 5 s
+      let a = (u / t).toFixed(2);
+      let s = (0.5 * u * t).toFixed(2);
+      return {
+        text: `A vehicle traveling at ${u} m/s decelerates uniformly to rest in ${t} s. Calculate (a) the deceleration and (b) the distance traveled while decelerating. Explain your calculations.`,
+        answer: [a + " m/s²", s + " m"],
+        modelAnswer: [
+          `Deceleration a = u / t = ${u} / ${t} ≈ ${a} m/s².`,
+          `Distance s = 0.5 × u × t = 0.5 × ${u} × ${t} ≈ ${s} m.`
+        ]
+      };
+    }
+  },
+  {
+    topic: 2,
+    difficulty: "hard",
+    type: "equation",
+    question: function() {
+      // Q5: Projectile range.
+      let u = (Math.random() * 10 + 20).toFixed(1); // 20 to 30 m/s
+      let angle = (Math.random() * 20 + 20).toFixed(1); // 20° to 40°
+      let g = 9.81;
+      let range = (u * u * Math.sin(2 * angle * Math.PI / 180) / g).toFixed(2);
+      return {
+        text: `A projectile is launched at ${u} m/s at an angle of ${angle}° above the horizontal. Calculate its horizontal range. Explain how the launch angle influences the range.`,
+        answer: range + " m",
+        modelAnswer: `Range R = (u² sin(2θ))/g. Substituting u = ${u} m/s and θ = ${angle}° gives R ≈ ${range} m. The term sin(2θ) shows that the maximum range occurs at 45°.`
+      };
+    }
+  }
       {
         topic: 2, difficulty: "easy", type: "equation",
         question: function() {
@@ -407,7 +583,101 @@
       },
       
       // --- Topic 3: Dynamics ---
-      {
+      const additionalQuestionsTopic3 = [
+  {
+    topic: 3,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q1: Net acceleration with friction.
+      let m = (Math.random() * 20 + 10).toFixed(1); // 10 to 30 kg
+      let F = (Math.random() * 100 + 50).toFixed(1); // 50 to 150 N
+      let f = (Math.random() * F * 0.5).toFixed(1); // friction between 0 and ~50% of F
+      let netForce = F - f;
+      let a = (netForce / m).toFixed(2);
+      return {
+        text: `A force of ${F} N is applied to a ${m} kg object while a frictional force of ${f} N opposes the motion. Calculate the net acceleration. Explain the role of net force.`,
+        answer: a + " m/s²",
+        modelAnswer: `Net force = F - friction = ${F} N - ${f} N = ${netForce} N. Then, acceleration a = net force/m = ${netForce} / ${m} ≈ ${a} m/s².`
+      };
+    }
+  },
+  {
+    topic: 3,
+    difficulty: "hard",
+    type: "numeric_multi",
+    question: function() {
+      // Q2: Elastic collision (1D).
+      let m1 = (Math.random() * 5 + 1).toFixed(1); // 1 to 6 kg
+      let m2 = (Math.random() * 5 + 1).toFixed(1);
+      let u1 = (Math.random() * 10 + 5).toFixed(1); // 5 to 15 m/s
+      let u2 = (Math.random() * 10).toFixed(1); // 0 to 10 m/s
+      let v1 = (((m1 - m2) / (parseFloat(m1) + parseFloat(m2))) * u1 + (2 * m2 / (parseFloat(m1) + parseFloat(m2))) * u2).toFixed(2);
+      return {
+        text: `Two objects with masses ${m1} kg and ${m2} kg move at ${u1} m/s and ${u2} m/s respectively and collide elastically. Calculate the final velocity of the ${m1} kg object. Explain using momentum and energy conservation.`,
+        answer: v1 + " m/s",
+        modelAnswer: `Using the elastic collision formula: v₁ = [(m₁ - m₂)/(m₁ + m₂)]·u₁ + [2m₂/(m₁ + m₂)]·u₂ ≈ ${v1} m/s. This follows from conserving both momentum and kinetic energy.`
+      };
+    }
+  },
+  {
+    topic: 3,
+    difficulty: "easy",
+    type: "numeric_multi",
+    question: function() {
+      // Q3: Inelastic collision.
+      let m1 = (Math.random() * 10 + 5).toFixed(1); // 5 to 15 kg
+      let m2 = (Math.random() * 10 + 5).toFixed(1);
+      let u1 = (Math.random() * 10 + 10).toFixed(1); // 10 to 20 m/s
+      let u2 = (Math.random() * 5).toFixed(1); // 0 to 5 m/s
+      let finalV = ((m1 * u1 + m2 * u2) / (parseFloat(m1) + parseFloat(m2))).toFixed(2);
+      return {
+        text: `A ${m1} kg object traveling at ${u1} m/s collides inelastically with a ${m2} kg object moving at ${u2} m/s, and they stick together. Calculate their common final velocity. Explain momentum conservation in inelastic collisions.`,
+        answer: finalV + " m/s",
+        modelAnswer: `Momentum conservation gives (m₁u₁ + m₂u₂) = (m₁ + m₂)v, so v = (m₁u₁ + m₂u₂)/(m₁ + m₂) ≈ ${finalV} m/s.`
+      };
+    }
+  },
+  {
+    topic: 3,
+    difficulty: "hard",
+    type: "equation",
+    question: function() {
+      // Q4: Rotational dynamics: Torque and angular acceleration.
+      let F = (Math.random() * 20 + 10).toFixed(1); // 10 to 30 N
+      let r = (Math.random() * 0.5 + 0.5).toFixed(2); // 0.5 to 1 m
+      let I = (Math.random() * 2 + 1).toFixed(2); // 1 to 3 kg·m²
+      let torque = (F * r).toFixed(2);
+      let alpha = (torque / I).toFixed(2);
+      return {
+        text: `A force of ${F} N is applied perpendicularly at a distance of ${r} m from the axis of rotation of an object with a moment of inertia of ${I} kg·m². Calculate the angular acceleration. Explain how torque and moment of inertia determine rotational motion.`,
+        answer: alpha + " rad/s²",
+        modelAnswer: `Torque τ = F*r = ${F}×${r} ≈ ${torque} N·m. Angular acceleration α = τ/I = ${torque} / ${I} ≈ ${alpha} rad/s².`
+      };
+    }
+  },
+  {
+    topic: 3,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q5: Block on an inclined plane with friction.
+      let m = (Math.random() * 20 + 10).toFixed(1); // 10 to 30 kg
+      let angle = (Math.random() * 20 + 10).toFixed(1); // 10° to 30°
+      let mu = (Math.random() * 0.2 + 0.1).toFixed(2); // 0.1 to 0.3
+      let g = 9.81;
+      let weight = m * g;
+      let parallel = weight * Math.sin(angle * Math.PI / 180);
+      let friction = mu * weight * Math.cos(angle * Math.PI / 180);
+      let netForce = parallel - friction;
+      return {
+        text: `A ${m} kg block is on an inclined plane at ${angle}° with a friction coefficient of ${mu}. Calculate the net force acting down the slope. Explain the roles of gravitational components and friction.`,
+        answer: netForce.toFixed(2) + " N",
+        modelAnswer: `The downhill component of weight is mg sinθ and friction is μmg cosθ. Thus, net force = mg(sinθ – μ cosθ). For m = ${m} kg, θ = ${angle}°, and μ = ${mu}, net force ≈ ${netForce.toFixed(2)} N.`
+      };
+    }
+  }
+    {
         topic: 3, difficulty: "easy", type: "equation",
         question: function() {
           const L = Math.floor(Math.random() * 5 + 1),
@@ -522,7 +792,94 @@
       },
       
       // --- Topic 4: Forces, density and pressure ---
-      {
+      const additionalQuestionsTopic4 = [
+  {
+    topic: 4,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q1: Hydrostatic pressure.
+      let h = (Math.random() * 10 + 5).toFixed(1); // 5 to 15 m
+      let rho = 1000;
+      let g = 9.81;
+      let pressure = (rho * g * h).toFixed(0);
+      return {
+        text: `Calculate the hydrostatic pressure at a depth of ${h} m in water. Explain the formula.`,
+        answer: pressure + " Pa",
+        modelAnswer: `Hydrostatic pressure P = ρgh = 1000×9.81×${h} ≈ ${pressure} Pa.`
+      };
+    }
+  },
+  {
+    topic: 4,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q2: Force on base of container.
+      let A = (Math.random() * 1000 + 500).toFixed(0); // 500 to 1500 cm²
+      let h = (Math.random() * 4 + 2).toFixed(1); // 2 to 6 m
+      let rho = 1000, g = 9.81;
+      let A_m2 = A / 10000;
+      let force = (rho * g * h * A_m2).toFixed(1);
+      return {
+        text: `A container with a base area of ${A} cm² is filled with water to a height of ${h} m. Calculate the force on the base due to the water. Explain how pressure and area determine force.`,
+        answer: force + " N",
+        modelAnswer: `Force = Pressure × Area = ρgh × (A in m²). With A = ${A} cm² = ${A_m2.toFixed(2)} m², force ≈ ${force} N.`
+      };
+    }
+  },
+  {
+    topic: 4,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q3: Buoyant force.
+      let V = (Math.random() * 500 + 100).toFixed(0); // 100 to 600 cm³
+      let rho = 1000, g = 9.81;
+      let V_m3 = V / 1e6;
+      let buoyant = (rho * g * V_m3).toFixed(2);
+      return {
+        text: `An object displaces ${V} cm³ of water. Calculate its buoyant force according to Archimedes' principle. Explain your reasoning.`,
+        answer: buoyant + " N",
+        modelAnswer: `Buoyant force F_b = ρgV. Here, V = ${V} cm³ = ${V_m3.toFixed(6)} m³, so F_b ≈ 1000×9.81×${V_m3.toFixed(6)} ≈ ${buoyant} N.`
+      };
+    }
+  },
+  {
+    topic: 4,
+    difficulty: "hard",
+    type: "numeric_multi",
+    question: function() {
+      // Q4: Mixture density (adapted from past paper)
+      let V_g = (Math.random() * 60 + 20).toFixed(0); // glycerine volume (20 to 80 cm³)
+      let d_g = 1.3, d_w = 1.0, d_mix = 1.1;
+      // Mixture: d_mix = (d_g*V_g + d_w*V_w)/(V_g+V_w) => Solve for V_w:
+      let V_w = (((d_g - d_mix) / (d_mix - d_w)) * V_g).toFixed(1);
+      return {
+        text: `A student has ${V_g} cm³ of glycerine (density = 1.3 g/cm³). How much water (density = 1.0 g/cm³) must be added to obtain a mixture with density 1.1 g/cm³? Explain your solution.`,
+        answer: V_w + " cm³",
+        modelAnswer: `Let V_w be water added. Then, 1.1 = (1.3V_g + 1.0V_w)/(V_g + V_w). Solving gives V_w = ((1.3 - 1.1)/(1.1 - 1.0))×V_g = 2×V_g. Thus, if V_g = ${V_g} cm³, then V_w = ${V_w} cm³.`
+      };
+    }
+  },
+  {
+    topic: 4,
+    difficulty: "hard",
+    type: "equation",
+    question: function() {
+      // Q5: Hydraulic press.
+      let F_small = (Math.random() * 200 + 100).toFixed(0); // 100 to 300 N
+      let A_small = (Math.random() * 50 + 50).toFixed(0); // 50 to 100 cm²
+      let A_large = (Math.random() * 200 + 100).toFixed(0); // 100 to 300 cm²
+      let F_large = (F_small * (A_large / A_small)).toFixed(1);
+      return {
+        text: `In a hydraulic press, a force of ${F_small} N is applied on a small piston of area ${A_small} cm². If the large piston has an area of ${A_large} cm², calculate the force exerted by the large piston. Explain Pascal's principle.`,
+        answer: F_large + " N",
+        modelAnswer: `Since pressure is transmitted equally, F_small/A_small = F_large/A_large, so F_large = F_small×(A_large/A_small) ≈ ${F_large} N.`
+      };
+    }
+  }
+    {
         topic: 4, difficulty: "easy", type: "equation",
         question: function() {
           const h = Math.floor(Math.random() * 10 + 5),
@@ -596,7 +953,92 @@
       },
       
       // --- Topic 5: Work, energy and power ---
-      {
+    const additionalQuestionsTopic5 = [
+  {
+    topic: 5,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q1: Gravitational potential energy.
+      let m = (Math.random() * 10 + 5).toFixed(1);
+      let h = (Math.random() * 10 + 5).toFixed(1);
+      let g = 9.81;
+      let GPE = (m * g * h).toFixed(1);
+      return {
+        text: `Calculate the gravitational potential energy of a ${m} kg object raised to a height of ${h} m. Explain the concept.`,
+        answer: GPE + " J",
+        modelAnswer: `GPE = mgh = ${m} × 9.81 × ${h} ≈ ${GPE} J. This energy represents the work done against gravity.`
+      };
+    }
+  },
+  {
+    topic: 5,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q2: Power calculation.
+      let W = (Math.random() * 500 + 200).toFixed(0); // 200 to 700 J
+      let t = (Math.random() * 10 + 5).toFixed(1); // 5 to 15 s
+      let P = (W / t).toFixed(1);
+      return {
+        text: `If ${W} J of work is performed in ${t} seconds, calculate the power output. Explain the relation between work and power.`,
+        answer: P + " W",
+        modelAnswer: `Power P = W/t = ${W} / ${t} ≈ ${P} W, which is the rate at which work is done.`
+      };
+    }
+  },
+  {
+    topic: 5,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q3: Energy stored in a spring.
+      let k = (Math.random() * 200 + 100).toFixed(0); // 100 to 300 N/m
+      let x = (Math.random() * 0.1 + 0.05).toFixed(3); // 0.05 to 0.15 m
+      let energy = (0.5 * k * x * x).toFixed(3);
+      return {
+        text: `A spring with constant ${k} N/m is compressed by ${x} m. Calculate the energy stored. Explain how the energy is calculated.`,
+        answer: energy + " J",
+        modelAnswer: `Energy = 0.5 × k × x² = 0.5 × ${k} × (${x})² ≈ ${energy} J. This energy is stored as elastic potential energy.`
+      };
+    }
+  },
+  {
+    topic: 5,
+    difficulty: "hard",
+    type: "equation",
+    question: function() {
+      // Q4: Work done against friction.
+      let F = (Math.random() * 50 + 50).toFixed(0); // 50 to 100 N
+      let d = (Math.random() * 10 + 5).toFixed(1); // 5 to 15 m
+      let reduction = (Math.random() * 0.3 + 0.2).toFixed(2); // 20% to 50%
+      let effectiveForce = F * (1 - reduction);
+      let work = (effectiveForce * d).toFixed(1);
+      return {
+        text: `A force of ${F} N is applied to move an object over ${d} m, but friction reduces the effective force by ${ (reduction * 100).toFixed(0) }%. Calculate the net work done. Explain how friction affects work.`,
+        answer: work + " J",
+        modelAnswer: `Effective force = ${F}×(1 - ${reduction}) ≈ ${effectiveForce.toFixed(1)} N. Then work = effective force × distance = ${effectiveForce.toFixed(1)} × ${d} ≈ ${work} J.`
+      };
+    }
+  },
+  {
+    topic: 5,
+    difficulty: "hard",
+    type: "equation",
+    question: function() {
+      // Q5: Energy conversion in free fall.
+      let m = (Math.random() * 5 + 1).toFixed(1);
+      let h = (Math.random() * 10 + 5).toFixed(1);
+      let g = 9.81;
+      let v = Math.sqrt(2 * g * h).toFixed(2);
+      return {
+        text: `An object of mass ${m} kg is dropped from a height of ${h} m. Using energy conservation, calculate its speed just before impact. Explain how gravitational potential energy converts to kinetic energy.`,
+        answer: v + " m/s",
+        modelAnswer: `Setting mgh = 0.5mv² gives v = √(2gh) = √(2×9.81×${h}) ≈ ${v} m/s, showing the conversion of potential energy to kinetic energy during free fall.`
+      };
+    }
+  }  
+    {
         topic: 5, difficulty: "easy", type: "equation",
         question: function() {
           const m = Math.floor(Math.random() * 10 + 1),
@@ -716,7 +1158,84 @@
       },
       
       // --- Topic 6: Deformation of solids ---
-      {
+    const additionalQuestionsTopic6 = [
+  {
+    topic: 6,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q1: Spring extension via Hooke’s law.
+      let k = (Math.random() * 200 + 100).toFixed(0); // 100 to 300 N/m
+      let F = (Math.random() * 50 + 20).toFixed(0); // 20 to 70 N
+      let extension = (F / k).toFixed(3);
+      return {
+        text: `A spring with constant ${k} N/m is subjected to a force of ${F} N. Calculate the extension using Hooke's law. Explain the principle.`,
+        answer: extension + " m",
+        modelAnswer: `Hooke's law: F = kx, so x = F/k = ${F} / ${k} ≈ ${extension} m.`
+      };
+    }
+  },
+  {
+    topic: 6,
+    difficulty: "hard",
+    type: "equation",
+    question: function() {
+      // Q2: Tensile extension of a rod.
+      let L = (Math.random() * 100 + 50).toFixed(0); // 50 to 150 cm
+      let A = (Math.random() * 0.001 + 0.0005).toFixed(6); // approx. 0.0005 to 0.0015 m²
+      let F = (Math.random() * 1000 + 500).toFixed(0); // 500 to 1500 N
+      let E = 200e9; // 200 GPa (steel)
+      let strain = F / (E * A);
+      let extension = ((L / 100) * strain).toFixed(6); // L in m
+      return {
+        text: `A rod of length ${L} cm and cross-sectional area ${A} m² is subjected to a tensile force of ${F} N. Given Young's modulus E = 200 GPa, calculate the extension. Explain the relation between stress, strain, and Young’s modulus.`,
+        answer: extension + " m",
+        modelAnswer: `Stress = F/A, strain = stress/E, and extension = original length × strain. Thus, extension = (L/100)×(F/(E*A)) ≈ ${extension} m.`
+      };
+    }
+  },
+  {
+    topic: 6,
+    difficulty: "hard",
+    type: "equation",
+    question: function() {
+      // Q3: Energy stored in a deformed material (approximation).
+      let F = (Math.random() * 500 + 100).toFixed(0); // 100 to 600 N
+      let k_approx = (Math.random() * 100 + 200).toFixed(0); // approximate stiffness
+      let x = (F / k_approx).toFixed(3);
+      let energy = (0.5 * F * x).toFixed(2);
+      return {
+        text: `A material obeying Hooke's law has an approximate stiffness of ${k_approx} N/m. If a force of ${F} N produces an extension of ${x} m, calculate the elastic potential energy stored. Explain your calculation.`,
+        answer: energy + " J",
+        modelAnswer: `Elastic potential energy U = 0.5 × F × x. So, U = 0.5 × ${F} × ${x} ≈ ${energy} J, representing the energy stored during deformation.`
+      };
+    }
+  },
+  {
+    topic: 6,
+    difficulty: "easy",
+    type: "definition",
+    question: "Define Young's modulus and explain its significance in the deformation of materials.",
+    modelAnswer: "Young's modulus is the ratio of stress to strain in the elastic region of a material. It measures the stiffness of a material and indicates how much it will deform under a given load.",
+    keywords: [["stiffness"], ["stress", "strain"], ["elastic"]]
+  },
+  {
+    topic: 6,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q5: Strain calculation.
+      let deltaL = (Math.random() * 0.05 + 0.01).toFixed(3); // 0.01 to 0.06 m
+      let L0 = (Math.random() * 1 + 1).toFixed(2); // 1 to 2 m
+      let strain = (deltaL / L0).toFixed(3);
+      return {
+        text: `A rod of original length ${L0} m is extended by ${deltaL} m. Calculate the strain. Explain what strain represents.`,
+        answer: strain,
+        modelAnswer: `Strain = ΔL / L₀ = ${deltaL} / ${L0} ≈ ${strain}. It is a dimensionless measure of deformation.`
+      };
+    }
+  }  
+    {
         topic: 6, difficulty: "easy", type: "equation",
         question: function() {
           const stress = Math.floor(Math.random() * 10 + 5),
@@ -793,7 +1312,78 @@
       },
       
       // --- Topic 7: Waves ---
-      {
+    const additionalQuestionsTopic7 = [
+  {
+    topic: 7,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q1: Wave speed on a string.
+      let T = (Math.random() * 20 + 50).toFixed(1); // 50 to 70 N
+      let mu = (Math.random() * 0.005 + 0.005).toFixed(4); // 0.005 to 0.010 kg/m
+      let v = Math.sqrt(T / mu).toFixed(2);
+      return {
+        text: `A wave travels along a string under a tension of ${T} N with a linear density of ${mu} kg/m. Calculate the speed of the wave. Explain the relationship.`,
+        answer: v + " m/s",
+        modelAnswer: `Wave speed v = √(T/μ). Thus, v = √(${T} / ${mu}) ≈ ${v} m/s.`
+      };
+    }
+  },
+  {
+    topic: 7,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q2: Wavelength from frequency.
+      let v = (Math.random() * 50 + 300).toFixed(1); // 300 to 350 m/s
+      let f = (Math.random() * 10 + 50).toFixed(1); // 50 to 60 Hz
+      let lambda = (v / f).toFixed(2);
+      return {
+        text: `A sound wave has a speed of ${v} m/s and a frequency of ${f} Hz. Calculate its wavelength. Explain the connection between these quantities.`,
+        answer: lambda + " m",
+        modelAnswer: `Wavelength λ = v / f = ${v} / ${f} ≈ ${lambda} m.`
+      };
+    }
+  },
+  {
+    topic: 7,
+    difficulty: "hard",
+    type: "equation",
+    question: function() {
+      // Q4: Doppler effect for a moving source.
+      let f0 = (Math.random() * 10 + 400).toFixed(1); // 400 to 410 Hz
+      let v = 340; // m/s
+      let vs = (Math.random() * 10 + 10).toFixed(1); // 10 to 20 m/s
+      let f_obs = (f0 * (v / (v - vs))).toFixed(1);
+      return {
+        text: `A source emitting sound at ${f0} Hz moves towards a stationary observer at ${vs} m/s. Calculate the observed frequency using the Doppler effect. Explain your reasoning.`,
+        answer: f_obs + " Hz",
+        modelAnswer: `For a source moving toward an observer, f = f₀×(v/(v−vs)). Here, f ≈ ${f0}×(340/(340−${vs})) ≈ ${f_obs} Hz.`
+      };
+    }
+  },
+  {
+    topic: 7,
+    difficulty: "hard",
+    type: "equation",
+    question: function() {
+      // Q5: Standing wave in a tube.
+      let L = (Math.random() * 1 + 1).toFixed(1); // 1 to 2 m
+      let n = Math.floor(Math.random() * 3 + 1); // harmonic number 1 to 3
+      let v = (Math.random() * 50 + 330).toFixed(1); // 330 to 380 m/s
+      let lambda = (2 * L / n).toFixed(2);
+      let f = (v / lambda).toFixed(2);
+      return {
+        text: `An open tube of length ${L} m supports a standing wave in its ${n} harmonic mode. Given the speed of sound is ${v} m/s, calculate (a) the wavelength and (b) the frequency of the standing wave. Explain your derivation.`,
+        answer: [lambda + " m", f + " Hz"],
+        modelAnswer: [
+          `For an open tube, λ = 2L/n, so λ = 2×${L}/${n} ≈ ${lambda} m.`,
+          `Frequency f = v/λ = ${v} / ${lambda} ≈ ${f} Hz.`
+        ]
+      };
+    }
+  }  
+    {
         topic: 7, difficulty: "easy", type: "equation",
         question: function() {
           const n = Math.floor(Math.random() * 3 + 1),
@@ -928,7 +1518,39 @@
       },
       
       // --- Topic 11: Particle and nuclear physics ---
-      {
+      const additionalQuestionsTopic11 = [
+  {
+    topic: 11,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q1: Alpha decay.
+      let A = Math.floor(Math.random() * 50 + 200); // 200 to 250
+      let finalA = A - 4;
+      return {
+        text: `A nucleus with a mass number of ${A} undergoes alpha decay. Calculate its final mass number and explain the process.`,
+        answer: finalA.toString(),
+        modelAnswer: `Alpha decay emits an alpha particle (2 protons + 2 neutrons), reducing the mass number by 4: ${A} - 4 = ${finalA}.`
+      };
+    }
+  },
+  {
+    topic: 11,
+    difficulty: "easy",
+    type: "equation",
+    question: function() {
+      // Q2: Beta-minus decay.
+      let Z = Math.floor(Math.random() * 20 + 10); // 10 to 30
+      let A = Math.floor(Math.random() * 30 + parseFloat(Z) + 10);
+      let finalZ = Z + 1;
+      return {
+        text: `A nucleus with proton number ${Z} and mass number ${A} undergoes beta-minus decay. Calculate the final proton number and explain the process.`,
+        answer: finalZ.toString(),
+        modelAnswer: `Beta-minus decay converts a neutron into a proton, increasing the proton number by 1 (mass number remains unchanged): Final Z = ${Z} + 1 = ${finalZ}.`
+      };
+    }
+  }
+    {
         topic: 11, difficulty: "easy", type: "equation",
         question: function() {
           const initialN = Math.floor(Math.random() * 50 + 50);
