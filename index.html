@@ -1311,8 +1311,8 @@
         }
       },
       
-      // --- Topic 7: Waves ---
-    const additionalQuestionsTopic7 = [
+      const additionalQuestionsTopic7 = [
+  // Equation questions:
   {
     topic: 7,
     difficulty: "easy",
@@ -1350,7 +1350,7 @@
     difficulty: "hard",
     type: "equation",
     question: function() {
-      // Q4: Doppler effect for a moving source.
+      // Q3: Doppler effect for a moving source.
       let f0 = (Math.random() * 10 + 400).toFixed(1); // 400 to 410 Hz
       let v = 340; // m/s
       let vs = (Math.random() * 10 + 10).toFixed(1); // 10 to 20 m/s
@@ -1364,194 +1364,32 @@
   },
   {
     topic: 7,
-    difficulty: "hard",
-    type: "equation",
-    question: function() {
-      // Q5: Standing wave in a tube.
-      let L = (Math.random() * 1 + 1).toFixed(1); // 1 to 2 m
-      let n = Math.floor(Math.random() * 3 + 1); // harmonic number 1 to 3
-      let v = (Math.random() * 50 + 330).toFixed(1); // 330 to 380 m/s
-      let lambda = (2 * L / n).toFixed(2);
-      let f = (v / lambda).toFixed(2);
-      return {
-        text: `An open tube of length ${L} m supports a standing wave in its ${n} harmonic mode. Given the speed of sound is ${v} m/s, calculate (a) the wavelength and (b) the frequency of the standing wave. Explain your derivation.`,
-        answer: [lambda + " m", f + " Hz"],
-        modelAnswer: [
-          `For an open tube, λ = 2L/n, so λ = 2×${L}/${n} ≈ ${lambda} m.`,
-          `Frequency f = v/λ = ${v} / ${lambda} ≈ ${f} Hz.`
-        ]
-      };
-    }
-  }  
-    {
-        topic: 7, difficulty: "easy", type: "equation",
-        question: function() {
-          const n = Math.floor(Math.random() * 3 + 1),
-                L = Math.floor(Math.random() * 3 + 1),
-                v = Math.floor(Math.random() * 200 + 100),
-                f = (n * v) / (2 * L);
-          return { 
-            text: `A pipe closed at both ends of length ${L} m vibrates in its ${ordinalSuffix(n)} harmonic. Find its frequency.`,
-            answer: f.toFixed(1),
-            modelAnswer: `Frequency ≈ ${f.toFixed(1)} Hz (using f = n*v/(2*L)).`
-          };
-        }
-      },
-      {
-        topic: 7, difficulty: "easy", type: "equation",
-        question: function() {
-          const d = (Math.floor(Math.random() * 4 + 1)) / 1000,
-                D = Math.floor(Math.random() * 100 + 100),
-                x = (Math.floor(Math.random() * 20 + 10)) / 1000,
-                lambda = (d * x) / (D / 100);
-          return { 
-            text: `In a two-slit experiment with a slit separation of ${(d * 1000).toFixed(1)} mm, screen distance ${D} cm, and fringe spacing ${(x * 1000).toFixed(1)} mm, calculate the wavelength of light.`,
-            answer: (lambda * 1e9).toFixed(6) + " m",
-            modelAnswer: `Using λ = (d×x)/(D/100), λ ≈ ${(lambda * 1e9).toFixed(6)} m.`
-          };
-        }
-      },
-      {
-        topic: 7, difficulty: "easy", type: "equation",
-        question: function() {
-          const L = Math.floor(Math.random() * 3 + 1),
-                v = Math.floor(Math.random() * 100 + 300),
-                f = v / (2 * L),
-                T = 1 / f;
-          return { 
-            text: `A pipe open at both ends of length ${L} m vibrates. (a) Find the fundamental frequency and (b) the time period.`,
-            answer: [f.toFixed(1), T.toFixed(3)],
-            modelAnswer: `Fundamental frequency ≈ ${f.toFixed(1)} Hz; Time period ≈ ${T.toFixed(3)} s.`,
-            type: "numeric_multi",
-            multi: true
-          };
-        }
-      },
-      {
-        topic: 7, difficulty: "easy", type: "definition",
-        question: "Define wavelength.",
-        modelAnswer: "Wavelength is the distance between successive points on a wave that are in phase.",
-        keywords: [["distance"], ["successive"], ["in phase"]]
-      },
-      {
-        topic: 7, difficulty: "easy", type: "definition",
-        question: "Define frequency.",
-        modelAnswer: "Frequency is the number of oscillations per second.",
-        keywords: [["oscillations"], ["per second", "Hz"]]
-      },
-      {
-        topic: 7, difficulty: "easy", type: "definition",
-        question: "Define wavefront.",
-        modelAnswer: "A wavefront is a line that connects points on a wave that are in the same phase.",
-        keywords: [["line"], ["same phase"]]
-      },
-      {
-        topic: 7, difficulty: "hard", type: "numeric_multi",
-        question: function() {
-          const L = 2, v = 305, f = v / (4 * L), T = 1 / f;
-          return { 
-            text: `A pipe closed at one end of length ${L} m vibrates. Calculate: (a) its fundamental frequency, (b) its time period, and (c) verify that f×T ≈ 1.`,
-            answer: [f.toFixed(1), T.toFixed(3), (f * T).toFixed(2)],
-            modelAnswer: [
-              `Fundamental frequency ≈ ${f.toFixed(1)} Hz,`,
-              `Time period ≈ ${T.toFixed(3)} s,`,
-              `f×T ≈ ${(f * T).toFixed(2)} (≈1).`
-            ],
-            multi: true
-          };
-        }
-      },
-      // New definition: Standing Wave
-      {
-        topic: 7, difficulty: "easy", type: "definition",
-        question: "Define a standing wave.",
-        modelAnswer: "A standing wave is formed by the combination of two waves moving in opposite directions with similar amplitude and the same frequency.",
-        keywords: [["two waves"], ["opposite directions"], ["similar amplitude"], ["same frequency", "coherent"]]
-      },
-      // New question: Open Pipe Standing Wave
-      {
-        topic: 7, difficulty: "hard", type: "numeric_multi",
-        question: function() {
-          const L = Math.floor(Math.random() * 3 + 1);
-          const n = Math.floor(Math.random() * 3 + 1);
-          const v = Math.floor(Math.random() * 50 + 330);
-          const lambda = (2 * L) / n;
-          const f = v / lambda;
-          return {
-            text: `An open pipe of length ${L} m vibrates in its ${n}${ordinalSuffix(n)} harmonic mode. Given the speed of sound is ${v} m/s, calculate: (a) the wavelength and (b) the frequency of the standing wave.`,
-            answer: [lambda.toFixed(2) + " m", f.toFixed(2) + " Hz"],
-            modelAnswer: [
-              `Wavelength λ = 2L/n = 2×${L}/${n} ≈ ${lambda.toFixed(2)} m,`,
-              `Frequency f = v/λ = ${v}/${lambda.toFixed(2)} ≈ ${f.toFixed(2)} Hz.`
-            ]
-          };
-        }
-      },
-      // New question: Speaker-Microphone Setup
-      {
-        topic: 7, difficulty: "hard", type: "equation",
-        question: function() {
-          const d = (Math.random() * 0.5 + 0.2).toFixed(2);
-          const v = Math.floor(Math.random() * 50 + 330);
-          const f = v / (2 * d);
-          return {
-            text: `A speaker faces a wall with a microphone between them. The microphone, when moved, passes through loud points spaced ${d} m apart. If the speed of sound is ${v} m/s, calculate the frequency.`,
-            answer: f.toFixed(2) + " Hz",
-            modelAnswer: `Loud point spacing is half a wavelength, so λ = 2×${d} = ${(2 * d).toFixed(2)} m; then f = ${v} / (${2 * d}) ≈ ${f.toFixed(2)} Hz.`
-          };
-        }
-      },
-      // New question: Diffraction Grating
-      {
-        topic: 7, difficulty: "hard", type: "equation",
-        question: function() {
-          const d = (Math.random() * 0.00001 + 0.000005).toFixed(7);
-          const m = Math.floor(Math.random() * 3) + 1;
-          const theta = Math.floor(Math.random() * 30 + 10);
-          const lambda = (d * Math.sin(theta * Math.PI / 180)) / m;
-          return {
-            text: `A diffraction grating has a spacing of ${d} m. A bright fringe of order ${m} is seen at ${theta}°. Calculate the wavelength.`,
-            answer: lambda.toFixed(7) + " m",
-            modelAnswer: `Using d*sinθ = nλ, we have λ = ${d}*sin(${theta}°)/${m} ≈ ${lambda.toFixed(7)} m (Note: If the grating specification is given in lines per mm, convert it to d in meters first.)`
-          };
-        }
-      },
+    difficulty: "easy",
+    type: "definition",
+    question: "Define wavelength.",
+    modelAnswer: "Wavelength is the distance between successive points on a wave that are in phase.",
+    keywords: [["distance"], ["successive"], ["in phase"]]
+  },
+  {
+    topic: 7,
+    difficulty: "easy",
+    type: "definition",
+    question: "Define frequency.",
+    modelAnswer: "Frequency is the number of oscillations per second.",
+    keywords: [["oscillations"], ["per second", "Hz"]]
+  },
+  {
+    topic: 7,
+    difficulty: "easy",
+    type: "definition",
+    question: "Define wavefront.",
+    modelAnswer: "A wavefront is a line that connects points on a wave that are in the same phase.",
+    keywords: [["line"], ["same phase"]]
+  }
+];
 
-     // --- Topic 8: superposition ---
     const additionalQuestionsTopic8 = [
-        {
-    topic: 8,
-    difficulty: "easy",
-    type: "equation",
-    question: function() {
-      // Q1: Constructive interference.
-      let A = Math.floor(Math.random() * 5 + 3); // Amplitude A between 3 and 7
-      let B = Math.floor(Math.random() * 5 + 2); // Amplitude B between 2 and 6
-      let resultant = A + B;
-      return {
-        text: Two waves interfere constructively. If one wave has an amplitude of ${A} units and the other ${B} units, what is the resultant amplitude?, 
-        answer: resultant.toString(),
-        modelAnswer: In constructive interference, the amplitudes simply add together. Therefore, the resultant amplitude is ${A} + ${B} = ${resultant} units.
-      };
-    }
-  },
-   {
-    topic: 8,
-    difficulty: "easy",
-    type: "equation",
-    question: function() {
-      // Q2: Destructive interference.
-      let A = Math.floor(Math.random() * 5 + 3);
-      let B = Math.floor(Math.random() * 5 + 2);
-      let resultant = Math.abs(A - B);
-      return {
-        text: Two waves interfere destructively. If one wave has an amplitude of ${A} units and the other ${B} units, what is the resultant amplitude?, 
-        answer: resultant.toString(),
-        modelAnswer: In destructive interference, the waves partially cancel out. The resultant amplitude is the absolute difference: |${A} - ${B}| = ${resultant} units.
-      };
-    }
-  },
-      const additionalQuestionsTopic8 = [
+  // Definition questions originally here:
   {
     topic: 8,
     difficulty: "easy",
@@ -1575,6 +1413,70 @@
     question: "Define destructive interference.",
     modelAnswer: "Destructive interference occurs when waves are out of phase, causing them to cancel each other out.",
     keywords: [["out of phase"], ["cancel", "reduce"]]
+  },
+  // Moved from Topic 7 – Standing wave related equations:
+  {
+    topic: 8,
+    difficulty: "hard",
+    type: "numeric_multi",
+    question: function() {
+      // Moved Q: Pipe closed at both ends.
+      const n = Math.floor(Math.random() * 3 + 1),
+            L = Math.floor(Math.random() * 3 + 1),
+            v = Math.floor(Math.random() * 200 + 100),
+            f = (n * v) / (2 * L);
+      return { 
+        text: `A pipe closed at both ends of length ${L} m vibrates in its ${ordinalSuffix(n)} harmonic. Find its frequency.`,
+        answer: f.toFixed(1),
+        modelAnswer: `Frequency ≈ ${f.toFixed(1)} Hz (using f = n*v/(2*L)).`
+      };
+    }
+  },
+  {
+    topic: 8,
+    difficulty: "hard",
+    type: "numeric_multi",
+    question: function() {
+      // Moved Q: Open pipe standing wave.
+      const L = Math.floor(Math.random() * 3 + 1),
+            n = Math.floor(Math.random() * 3 + 1),
+            v = Math.floor(Math.random() * 50 + 330),
+            lambda = (2 * L) / n,
+            f = v / lambda;
+      return {
+        text: `An open pipe of length ${L} m vibrates in its ${n}${ordinalSuffix(n)} harmonic mode. Given the speed of sound is ${v} m/s, calculate: (a) the wavelength and (b) the frequency of the standing wave.`,
+        answer: [lambda.toFixed(2) + " m", f.toFixed(2) + " Hz"],
+        modelAnswer: [
+          `Wavelength λ = 2L/n = 2×${L}/${n} ≈ ${lambda.toFixed(2)} m,`,
+          `Frequency f = v/λ = ${v} / ${lambda.toFixed(2)} ≈ ${f.toFixed(2)} Hz.`
+        ]
+      };
+    }
+  },
+  {
+    topic: 8,
+    difficulty: "hard",
+    type: "equation",
+    question: function() {
+      // Moved Q: Speaker-Microphone Setup (standing wave type).
+      const d = (Math.random() * 0.5 + 0.2).toFixed(2);
+      const v = Math.floor(Math.random() * 50 + 330);
+      const f = v / (2 * d);
+      return {
+        text: `A speaker faces a wall with a microphone between them. The microphone, when moved, passes through loud points spaced ${d} m apart. If the speed of sound is ${v} m/s, calculate the frequency.`,
+        answer: f.toFixed(2) + " Hz",
+        modelAnswer: `Loud point spacing is half a wavelength, so λ = 2×${d} = ${(2 * d).toFixed(2)} m; then f = ${v} / (${2 * d}) ≈ ${f.toFixed(2)} Hz.`
+      };
+    }
+  },
+  // Definition questions for standing waves:
+  {
+    topic: 8,
+    difficulty: "easy",
+    type: "definition",
+    question: "Define a standing wave.",
+    modelAnswer: "A standing wave is formed by the combination of two waves moving in opposite directions with similar amplitude and the same frequency.",
+    keywords: [["two waves"], ["opposite directions"], ["similar amplitude"], ["same frequency", "coherent"]]
   }
 ];
 
