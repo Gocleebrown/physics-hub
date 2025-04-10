@@ -144,7 +144,8 @@
             borderColor: 'blue',
             borderWidth: 2,
             fill: false,
-            tension: 0
+            tension: 0,
+            pointRadius: 0
           }]
         },
         options: {
@@ -158,14 +159,16 @@
                 text: 'Extension L (cm)'
               },
               min: 0,
-              max: MAX_L
+              max: MAX_L,
+              ticks: {stepSize: 2 },
             },
             y: {
               title: {
                 display: true,
                 text: 'Force F (N)'
               },
-              min: 0
+              min: 0,
+              ticks: {stepSize: 2}
             }
           },
           plugins: {
@@ -1050,38 +1053,61 @@
           };
         }
       },
-      {
-        topic: 6,
-        difficulty: "easy",
-        type: "equation",
-        question: function() {
-          // Generate random spring constant k (in N/cm) between 0.3 and 0.5
-          const k = (0.3 + Math.random() * 0.2);
-          // Generate random x-intercept L0 between 0 and 5 cm
-          const L0 = Math.random() * 5;
-          // Expected answer: the spring constant k (rounded to two decimals)
-          const answer = k.toFixed(2) + " N/cm";
-          // Model answer explaining the method
-          const modelAnswer = `Hooke's Law gives F = k(L - L₀). The graph is linear so the gradient equals the spring constant, k. By selecting two points on the line and computing ΔF/ΔL, we obtain k. For this graph, k = ${k.toFixed(2)} N/cm.`;
-          
-          // Create a unique canvas ID for the dynamic chart
-          const canvasId = "springChart_" + Math.floor(Math.random() * 100000);
-          // Build the HTML for the graph (it will be inserted into the diagram container)
-          const imageHtml = `<canvas id="${canvasId}" width="600" height="400"></canvas>`;
-          
-          // Increase timeout delay to ensure canvas is rendered
-          setTimeout(() => {
-            drawSpringChart(canvasId, k, L0);
-          }, 700);
-          
-          return {
-            text: `A force vs. extension graph for a spring is shown below. The relationship follows Hooke’s Law in the form F = k (L - L₀), where k is the spring constant and L₀ is the extension at which the force becomes zero. Determine the spring constant k from the graph.`,
-            answer: answer,
-            modelAnswer: modelAnswer,
-            image: imageHtml
-          };
-        }
-      },
+        {
+    topic: 6,
+    difficulty: "easy",
+    type: "numeric_multi",  // changed type to numeric_multi
+    question: function() {
+      // Generate a dynamic spring constant k (in N/cm) between 0.3 and 0.5
+      const k_num = 0.3 + Math.random() * 0.2; 
+      // Generate a dynamic x-intercept L0 between 0 and 5 cm
+      const L0 = Math.random() * 5;
+      // Generate a dynamic applied force (in N) for part (b)
+      const F_applied = Number((Math.random() * 10 + 10).toFixed(0));
+      
+      // Part (a): The spring constant answer (displayed in N/cm)
+      const answerPart1 = k_num.toFixed(2) + " N/cm";
+      
+      // Part (b):
+      // Calculate extension in cm: x_cm = F_applied / k_num.
+      // Convert extension to meters: x_m = x_cm / 100.
+      // Convert spring constant to SI units: k_SI = k_num * 100 (N/m).
+      // Then, elastic energy E = ½ * k_SI * (x_m)².
+      const x_cm = F_applied / k_num;
+      const x_m = x_cm / 100;
+      const k_SI = k_num * 100;
+      const energy = 0.5 * k_SI * (x_m * x_m);
+      const answerPart2 = energy.toFixed(2) + " J";
+      
+      const answerCombined = [answerPart1, answerPart2];
+      
+      // Model answers:
+      const modelAnswerPart1 = `Answer (a): Using Hooke's Law, F = k(L - L₀), the gradient of the graph gives k. For this graph, k = ${k_num.toFixed(2)} N/cm.`;
+      const modelAnswerPart2 = `Answer (b): With F = ${F_applied} N, the extension is x = F/k = ${x_cm.toFixed(2)} cm (${x_m.toFixed(4)} m). Converting k to SI units gives k = ${k_SI.toFixed(2)} N/m so the elastic potential energy is E = ½·k·x² ≈ ${energy.toFixed(2)} J.`;
+      
+      const modelAnswerCombined = [modelAnswerPart1, modelAnswerPart2];
+      
+      // Create a unique canvas ID for the dynamic chart
+      const canvasId = "springChart_" + Math.floor(Math.random() * 100000);
+      // Build the HTML for the graph
+      const imageHtml = `<canvas id="${canvasId}" width="600" height="400"></canvas>`;
+      
+      // Delay drawing the chart to ensure the canvas is in the DOM
+      setTimeout(() => {
+        drawSpringChart(canvasId, k_num, L0);
+      }, 700);
+      
+      return {
+        text: `A force vs. extension graph for a spring is shown below. It follows Hooke’s Law: F = k(L - L₀), where k is the spring constant and L₀ is the extension at which force becomes zero.
+(a) Determine the spring constant k from the graph.
+(b) Determine the elastic potential energy stored when the applied force is ${F_applied} N.`,
+        answer: answerCombined,
+        modelAnswer: modelAnswerCombined,
+        image: imageHtml
+      };
+    }
+  },
+
       {
         topic: 6,
         difficulty: "hard",
@@ -1917,7 +1943,9 @@
         q.answer = built.answer;
         q.modelAnswer = built.modelAnswer;
         q.image = built.image || null;
-      }
+      } else{
+      q.text = q.question;
+      }      
       document.getElementById("diagramContainer").innerHTML = "";
       document.getElementById("answerInputs").innerHTML = "";
       document.getElementById("feedback").innerText = "";
